@@ -978,6 +978,7 @@
   import equipTooltip from '@/components/equipTooltip.vue'
   import { ElMessageBox } from 'element-plus'
   import { useMainStore } from '@/plugins/store'
+  import { useAuthStore } from '@/plugins/authStore'
   import {
     maxLv,
     dropdownType,
@@ -992,6 +993,7 @@
   import { xiuxianApi } from '@/api'
 
   const store = useMainStore()
+  const authStore = useAuthStore()
   const router = useRouter()
   const ver = ref('1.0.0')
   // 错误信息
@@ -1269,7 +1271,7 @@
         try {
           // 更新玩家名
           await xiuxianApi.updatePlayerName({
-            userId: store.userId,
+            userId: authStore.userId,
             playerName: value
           })
 
@@ -1433,7 +1435,7 @@
       .then(async () => {
         try {
           // 删除数据库中的存档
-          await xiuxianApi.deleteSave(store.userId)
+          await xiuxianApi.deleteSave(authStore.userId)
 
           gameNotifys({ title: '提示', message: '存档删除成功' })
           // 清空本地存档
@@ -1456,10 +1458,9 @@
     })
       .then(() => {
         // 清空store中的用户信息
-        store.userId = null
-        store.username = null
+        authStore.logout()
         // 跳转到登录页
-        router.push('/')
+        router.push('/login')
       })
       .catch(() => { })
   }

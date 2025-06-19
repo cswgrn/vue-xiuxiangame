@@ -44,6 +44,7 @@
 import { useRoute } from 'vue-router'
 import { ref, watch, computed, onMounted } from 'vue'
 import { useMainStore } from './plugins/store'
+import { useAuthStore } from '@/plugins/authStore'
 import { xiuxianApi } from '@/api'
 
 const player = ref({})
@@ -61,6 +62,7 @@ onMounted(() => {
   // 初始化玩家数据
   player.value = useMainStore().player
   const store = useMainStore()
+  const authStore = useAuthStore()
 
   // 每分钟增加1岁
   setInterval(() => {
@@ -72,7 +74,7 @@ onMounted(() => {
   // 自动备份功能（每分钟）
   const autoSave = async () => {
     // 只有登录用户才自动备份
-    if (store.userId) {
+    if (authStore.userId) {
       try {
         const saveData = JSON.stringify({
           player: store.player,
@@ -80,7 +82,7 @@ onMounted(() => {
         })
 
         await xiuxianApi.saveGame({
-          userId: store.userId,
+          userId: authStore.userId,
           saveData: saveData
         })
       } catch (error) {
@@ -103,7 +105,7 @@ onMounted(() => {
 
   // 页面可见性变化时的处理
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && store.userId) {
+    if (!document.hidden && authStore.userId) {
       // 页面重新可见时立即备份一次
       autoSave()
     }

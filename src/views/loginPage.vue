@@ -53,12 +53,14 @@
 import { ref, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useMainStore } from '@/plugins/store'
+import { useAuthStore } from '@/plugins/authStore' 
 import { ElMessage } from 'element-plus'
-import { xiuxianApi } from '@/api' // 导入封装的API
+import { xiuxianApi } from '@/api'
 
 const router = useRouter()
 const route = useRoute()
 const store = useMainStore()
+const authStore = useAuthStore()
 
 const loading = ref(false)
 const creating = ref(false)
@@ -100,7 +102,6 @@ const handleLogin = async () => {
 
     loading.value = true
     try {
-      // 使用封装的API
       const response = await xiuxianApi.login({
         username: loginForm.username,
         password: loginForm.password
@@ -109,9 +110,10 @@ const handleLogin = async () => {
       const { data } = response
 
       if (data.exists) {
-        // 用户存在，显示欢迎页面
-        store.userId = data.user.id
-        store.username = data.user.username
+        // 用户存在，保存认证信息到 authStore
+        authStore.login(data.user.id, data.user.username)
+        
+        // 保存玩家名到游戏 store
         store.player.name = data.user.player_name
         welcomePlayerName.value = data.user.player_name
         showWelcome.value = true
@@ -134,7 +136,6 @@ const handleLogin = async () => {
 
         // 延迟跳转，显示欢迎动画
         setTimeout(() => {
-          // 检查是否有重定向参数
           const redirect = route.query.redirect || '/home'
           router.push(redirect)
         }, 1200)
@@ -144,7 +145,6 @@ const handleLogin = async () => {
       }
     } catch (error) {
       console.error('登录失败', error)
-      // 错误消息已在拦截器中处理，这里可以做额外处理
     } finally {
       loading.value = false
     }
@@ -157,7 +157,6 @@ const handleCreateUser = async () => {
 
     creating.value = true
     try {
-      // 使用封装的API
       const response = await xiuxianApi.register({
         username: loginForm.username,
         password: loginForm.password,
@@ -166,9 +165,9 @@ const handleCreateUser = async () => {
 
       const { data } = response
 
-      // 保存用户信息
-      store.userId = data.user.id
-      store.username = data.user.username
+      authStore.login(data.user.id, data.user.username)
+      
+      // 保存玩家名到游戏 store
       store.player.name = data.user.player_name
 
       ElMessage.success('账号创建成功！')
@@ -177,6 +176,7 @@ const handleCreateUser = async () => {
       // 跳转到游戏首页
       router.push('/home')
     } catch (error) {
+      console.error('创建用户失败', error)
     } finally {
       creating.value = false
     }

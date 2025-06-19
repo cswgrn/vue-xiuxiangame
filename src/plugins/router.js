@@ -8,7 +8,7 @@ import endlesstower from '../views/endlessPage.vue'
 import game from '../views/game/game.vue'
 import login from '../views/loginPage.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { useMainStore } from '@/plugins/store'
+import { useAuthStore } from '@/plugins/authStore'
 
 const routes = [
   {
@@ -100,12 +100,12 @@ const router = createRouter({
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-  const store = useMainStore()
+  const authStore = useAuthStore()
   
   // 检查路由是否需要认证
   if (to.meta.requiresAuth) {
     // 检查用户是否已登录
-    if (!store.userId || !store.username) {
+    if (!authStore.isLoggedIn) { 
       next('/login')
     } else {
       next()
