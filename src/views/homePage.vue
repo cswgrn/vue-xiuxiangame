@@ -1440,6 +1440,8 @@
           gameNotifys({ title: '提示', message: '存档删除成功' })
           // 清空本地存档
           localStorage.removeItem('vuex')
+          // 设置玩家名字
+          player.value.name = authStore.userName
           // 刷新页面
           location.reload(1)
         } catch (error) {
