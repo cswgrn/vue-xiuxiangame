@@ -6,14 +6,26 @@ import explore from '../views/explorePage.vue'
 import cultivate from '../views/cultivatePage.vue'
 import endlesstower from '../views/endlessPage.vue'
 import game from '../views/game/game.vue'
+import login from '../views/loginPage.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { useMainStore } from '@/plugins/store'
 
 const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    meta: {
+      keepAlive: false,
+      requiresAuth: false
+    },
+    component: login
+  },
   {
     path: '/',
     name: 'index',
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      requiresAuth: true
     },
     component: index
   },
@@ -21,7 +33,8 @@ const routes = [
     path: '/home',
     name: 'home',
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      requiresAuth: true
     },
     component: home
   },
@@ -29,7 +42,8 @@ const routes = [
     path: '/cultivate',
     name: 'cultivate',
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      requiresAuth: true
     },
     component: cultivate
   },
@@ -37,7 +51,8 @@ const routes = [
     path: '/map',
     name: 'map',
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      requiresAuth: true
     },
     component: map
   },
@@ -45,7 +60,8 @@ const routes = [
     path: '/explore',
     name: 'explore',
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      requiresAuth: true
     },
     component: explore
   },
@@ -53,7 +69,8 @@ const routes = [
     path: '/boss',
     name: 'boss',
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      requiresAuth: true
     },
     component: boss
   },
@@ -61,7 +78,8 @@ const routes = [
     path: '/endlesstower',
     name: 'endlesstower',
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      requiresAuth: true
     },
     component: endlesstower
   },
@@ -69,7 +87,8 @@ const routes = [
     path: '/game',
     name: 'game',
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      requiresAuth: true
     },
     component: game
   }
@@ -77,6 +96,23 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  const store = useMainStore()
+  
+  // 检查路由是否需要认证
+  if (to.meta.requiresAuth) {
+    // 检查用户是否已登录
+    if (!store.userId || !store.username) {
+      next('/login')
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

@@ -3,6 +3,9 @@ import crypto from '@/plugins/crypto'
 
 export const useMainStore = defineStore('main', {
   state: () => ({
+    // 用户认证信息
+    userId: null,
+    username: null,
     // boss属性
     boss: {
       name: '',
@@ -113,7 +116,7 @@ export const useMainStore = defineStore('main', {
   }),
   persist: {
     key: 'vuex',
-    paths: ['boss', 'player'],
+    paths: ['boss', 'player', 'userId', 'username'],
     storage: localStorage,
     serializer: {
       serialize: state => {

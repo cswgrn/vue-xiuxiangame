@@ -106,5 +106,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src')
     }
   },
-  logLevel: 'error'
+  logLevel: 'error',
+  server: {
+    proxy: {
+      '/xiuxian': {
+        target: 'https://proxy.paimons.cn/xiuxian',
+        changeOrigin: true
+      }
+    }
+  }
 })
