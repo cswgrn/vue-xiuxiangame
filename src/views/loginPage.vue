@@ -51,12 +51,13 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useMainStore } from '@/plugins/store'
 import { ElMessage } from 'element-plus'
 import { xiuxianApi } from '@/api' // 导入封装的API
 
 const router = useRouter()
+const route = useRoute()
 const store = useMainStore()
 
 const loading = ref(false)

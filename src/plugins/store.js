@@ -122,14 +122,18 @@ export const useMainStore = defineStore('main', {
       serialize: state => {
         return JSON.stringify({
           boss: crypto.encryption(state.boss),
-          player: crypto.encryption(state.player)
+          player: crypto.encryption(state.player),
+          userId: state.userId,
+          username: state.username
         })
       },
       deserialize: value => {
         const state = JSON.parse(value)
         return {
           boss: crypto.decryption(state.boss),
-          player: crypto.decryption(state.player)
+          player: crypto.decryption(state.player),
+          userId: state.userId,
+          username: state.username
         }
       }
     }

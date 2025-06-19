@@ -83,8 +83,6 @@ onMounted(() => {
           userId: store.userId,
           saveData: saveData
         })
-
-        console.log('自动备份成功')
       } catch (error) {
         console.error('自动备份失败:', error)
       }
