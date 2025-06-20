@@ -22,12 +22,12 @@
           </div>
           <div class="tag attribute" v-if="player.level >= maxLv">修为: 登峰造极</div>
           <div class="tag attribute" v-else @click="
-              gameNotifys({
-                title: '提示',
-                message: `您距离${levelNames(player.level + 1)}境界还需${formatNumberToChineseUnit(
-                  player.maxCultivation - player.cultivation
-                )}点修为`
-              })
+            gameNotifys({
+              title: '提示',
+              message: `您距离${levelNames(player.level + 1)}境界还需${formatNumberToChineseUnit(
+                player.maxCultivation - player.cultivation
+              )}点修为`
+            })
             ">
             修为: {{ calculatePercentageDifference(player.maxCultivation, player.cultivation) }}
             <el-icon>
@@ -417,9 +417,9 @@
             </span>
             <span class="value">
               {{
-              petInfo.level > parseInt(player.pet?.level || 0)
-              ? levelNames(petInfo.level)
-              : levelNames(player.pet?.level)
+                petInfo.level > parseInt(player.pet?.level || 0)
+                  ? levelNames(petInfo.level)
+                  : levelNames(player.pet?.level)
               }}
             </span>
           </p>
@@ -467,11 +467,11 @@
             <span class="description">
               暴击率:
               {{
-              petInfo?.critical > 0
-              ? petInfo?.critical * 100 > 100
-              ? 100
-              : (petInfo?.critical * 100).toFixed(2)
-              : 0
+                petInfo?.critical > 0
+                  ? petInfo?.critical * 100 > 100
+                    ? 100
+                    : (petInfo?.critical * 100).toFixed(2)
+                  : 0
               }}%
             </span>
             <span class="icon">
@@ -525,11 +525,11 @@
               <span class="description">
                 闪避率:
                 {{
-                petInfo?.initial?.dodge > 0
-                ? petInfo?.initial?.dodge * 100 > 100
-                ? 100
-                : (petInfo?.initial?.dodge * 100).toFixed(2)
-                : 0
+                  petInfo?.initial?.dodge > 0
+                    ? petInfo?.initial?.dodge * 100 > 100
+                      ? 100
+                      : (petInfo?.initial?.dodge * 100).toFixed(2)
+                    : 0
                 }}%
               </span>
               <span class="icon">
@@ -543,11 +543,11 @@
               <span class="description">
                 暴击率:
                 {{
-                petInfo?.initial?.critical > 0
-                ? petInfo?.initial?.critical * 100 > 100
-                ? 100
-                : (petInfo?.initial?.critical * 100).toFixed(2)
-                : 0
+                  petInfo?.initial?.critical > 0
+                    ? petInfo?.initial?.critical * 100 > 100
+                      ? 100
+                      : (petInfo?.initial?.critical * 100).toFixed(2)
+                    : 0
                 }}%
               </span>
               <span class="icon">
@@ -579,8 +579,7 @@
           <p>
             <span class="description">炼器: {{ inventoryInfo.strengthen || 0 }}</span>
             <span class="icon">
-              <i :class="
-                  calculateDifference(inventoryInfo.strengthen, player.equipment[inventoryInfo.type]?.strengthen).icon
+              <i :class="calculateDifference(inventoryInfo.strengthen, player.equipment[inventoryInfo.type]?.strengthen).icon
                 " />
             </span>
             <span class="value">
@@ -594,28 +593,27 @@
             </span>
             <span class="value">
               {{
-              inventoryInfo.level > parseInt(player.equipment[inventoryInfo.type]?.level || 1)
-              ? levelNames(inventoryInfo.level)
-              : levelNames(player.equipment[inventoryInfo.type]?.level)
+                inventoryInfo.level > parseInt(player.equipment[inventoryInfo.type]?.level || 1)
+                  ? levelNames(inventoryInfo.level)
+                  : levelNames(player.equipment[inventoryInfo.type]?.level)
               }}
             </span>
           </p>
           <p>
             <span class="description">品质: {{ levels[inventoryInfo.quality] }}</span>
             <span class="icon">
-              <i :class="
-                  calculateDifference(
-                    levelsNum[inventoryInfo.quality],
-                    levelsNum[player.equipment[inventoryInfo.type]?.quality]
-                  ).icon
+              <i :class="calculateDifference(
+                levelsNum[inventoryInfo.quality],
+                levelsNum[player.equipment[inventoryInfo.type]?.quality]
+              ).icon
                 " />
             </span>
             <span class="value">
               {{
-              calculateDifference(
-              levelsNum[inventoryInfo.quality],
-              levelsNum[player.equipment[inventoryInfo.type]?.quality]
-              ).num < 0 ? levels[player.equipment[inventoryInfo.type]?.quality] : levels[inventoryInfo.quality] }}
+                calculateDifference(
+                  levelsNum[inventoryInfo.quality],
+                  levelsNum[player.equipment[inventoryInfo.type]?.quality]
+                ).num < 0 ? levels[player.equipment[inventoryInfo.type]?.quality] : levels[inventoryInfo.quality] }}
                 </span>
           </p>
           <p>
@@ -652,11 +650,11 @@
             <span class="description">
               闪避率:
               {{
-              inventoryInfo?.dodge > 0
-              ? inventoryInfo?.dodge * 100 > 100
-              ? 100
-              : (inventoryInfo?.dodge * 100).toFixed(2)
-              : 0
+                inventoryInfo?.dodge > 0
+                  ? inventoryInfo?.dodge * 100 > 100
+                    ? 100
+                    : (inventoryInfo?.dodge * 100).toFixed(2)
+                  : 0
               }}%
             </span>
             <span class="icon">
@@ -670,16 +668,15 @@
             <span class="description">
               暴击率:
               {{
-              inventoryInfo?.critical > 0
-              ? inventoryInfo?.critical * 100 > 100
-              ? 100
-              : (inventoryInfo?.critical * 100).toFixed(2)
-              : 0
+                inventoryInfo?.critical > 0
+                  ? inventoryInfo?.critical * 100 > 100
+                    ? 100
+                    : (inventoryInfo?.critical * 100).toFixed(2)
+                  : 0
               }}%
             </span>
             <span class="icon">
-              <i :class="
-                  calculateDifference(inventoryInfo?.critical, player.equipment[inventoryInfo.type]?.critical).icon
+              <i :class="calculateDifference(inventoryInfo?.critical, player.equipment[inventoryInfo.type]?.critical).icon
                 " />
             </span>
             <span class="value">
@@ -706,57 +703,54 @@
             <p>
               <span class="description">气血: {{ inventoryInfo?.initial?.health }}</span>
               <span class="icon">
-                <i :class="
-                    calculateDifference(
-                      inventoryInfo?.initial?.health,
-                      player.equipment[inventoryInfo.type]?.initial?.health
-                    ).icon
+                <i :class="calculateDifference(
+                  inventoryInfo?.initial?.health,
+                  player.equipment[inventoryInfo.type]?.initial?.health
+                ).icon
                   " />
               </span>
               <span class="value">
                 {{
-                calculateDifference(
-                inventoryInfo?.initial?.health,
-                player.equipment[inventoryInfo.type]?.initial?.health
-                ).num
+                  calculateDifference(
+                    inventoryInfo?.initial?.health,
+                    player.equipment[inventoryInfo.type]?.initial?.health
+                  ).num
                 }}
               </span>
             </p>
             <p>
               <span class="description">攻击: {{ inventoryInfo?.initial?.attack }}</span>
               <span class="icon">
-                <i :class="
-                    calculateDifference(
-                      inventoryInfo?.initial?.attack,
-                      player.equipment[inventoryInfo.type]?.initial?.attack
-                    ).icon
+                <i :class="calculateDifference(
+                  inventoryInfo?.initial?.attack,
+                  player.equipment[inventoryInfo.type]?.initial?.attack
+                ).icon
                   " />
               </span>
               <span class="value">
                 {{
-                calculateDifference(
-                inventoryInfo?.initial?.attack,
-                player.equipment[inventoryInfo.type]?.initial?.attack
-                ).num
+                  calculateDifference(
+                    inventoryInfo?.initial?.attack,
+                    player.equipment[inventoryInfo.type]?.initial?.attack
+                  ).num
                 }}
               </span>
             </p>
             <p>
               <span class="description">防御: {{ inventoryInfo?.initial?.defense }}</span>
               <span class="icon">
-                <i :class="
-                    calculateDifference(
-                      inventoryInfo?.initial?.defense,
-                      player.equipment[inventoryInfo.type]?.initial?.defense
-                    ).icon
+                <i :class="calculateDifference(
+                  inventoryInfo?.initial?.defense,
+                  player.equipment[inventoryInfo.type]?.initial?.defense
+                ).icon
                   " />
               </span>
               <span class="value">
                 {{
-                calculateDifference(
-                inventoryInfo?.initial?.defense,
-                player.equipment[inventoryInfo.type]?.initial?.defense
-                ).num
+                  calculateDifference(
+                    inventoryInfo?.initial?.defense,
+                    player.equipment[inventoryInfo.type]?.initial?.defense
+                  ).num
                 }}
               </span>
             </p>
@@ -764,27 +758,26 @@
               <span class="description">
                 闪避率:
                 {{
-                inventoryInfo?.initial?.dodge > 0
-                ? inventoryInfo?.initial?.dodge * 100 > 100
-                ? 100
-                : (inventoryInfo?.initial?.dodge * 100).toFixed(2)
-                : 0
+                  inventoryInfo?.initial?.dodge > 0
+                    ? inventoryInfo?.initial?.dodge * 100 > 100
+                      ? 100
+                      : (inventoryInfo?.initial?.dodge * 100).toFixed(2)
+                    : 0
                 }}%
               </span>
               <span class="icon">
-                <i :class="
-                    calculateDifference(
-                      inventoryInfo?.initial?.dodge,
-                      player.equipment[inventoryInfo.type]?.initial?.dodge
-                    ).icon
+                <i :class="calculateDifference(
+                  inventoryInfo?.initial?.dodge,
+                  player.equipment[inventoryInfo.type]?.initial?.dodge
+                ).icon
                   " />
               </span>
               <span class="value">
                 {{
-                calculateDifference(
-                inventoryInfo?.initial?.dodge,
-                player.equipment[inventoryInfo.type]?.initial?.dodge
-                ).num
+                  calculateDifference(
+                    inventoryInfo?.initial?.dodge,
+                    player.equipment[inventoryInfo.type]?.initial?.dodge
+                  ).num
                 }}
               </span>
             </p>
@@ -792,27 +785,26 @@
               <span class="description">
                 暴击率:
                 {{
-                inventoryInfo?.initial?.critical > 0
-                ? inventoryInfo?.initial?.critical * 100 > 100
-                ? 100
-                : (inventoryInfo?.initial?.critical * 100).toFixed(2)
-                : 0
+                  inventoryInfo?.initial?.critical > 0
+                    ? inventoryInfo?.initial?.critical * 100 > 100
+                      ? 100
+                      : (inventoryInfo?.initial?.critical * 100).toFixed(2)
+                    : 0
                 }}%
               </span>
               <span class="icon">
-                <i :class="
-                    calculateDifference(
-                      inventoryInfo?.initial?.critical,
-                      player.equipment[inventoryInfo.type]?.initial?.critical
-                    ).icon
+                <i :class="calculateDifference(
+                  inventoryInfo?.initial?.critical,
+                  player.equipment[inventoryInfo.type]?.initial?.critical
+                ).icon
                   " />
               </span>
               <span class="value">
                 {{
-                calculateDifference(
-                inventoryInfo?.initial?.critical,
-                player.equipment[inventoryInfo.type]?.initial?.critical
-                ).num
+                  calculateDifference(
+                    inventoryInfo?.initial?.critical,
+                    player.equipment[inventoryInfo.type]?.initial?.critical
+                  ).num
                 }}
               </span>
             </p>
@@ -932,17 +924,17 @@
           <p>
             闪避率:
             {{
-            newBieItem?.dodge > 0 ? (newBieItem?.dodge * 100 > 100 ? 100 : (newBieItem?.dodge * 100).toFixed(2)) : 0
+              newBieItem?.dodge > 0 ? (newBieItem?.dodge * 100 > 100 ? 100 : (newBieItem?.dodge * 100).toFixed(2)) : 0
             }}%
           </p>
           <p>
             暴击率:
             {{
-            newBieItem?.critical > 0
-            ? newBieItem?.critical * 100 > 100
-            ? 100
-            : (newBieItem?.critical * 100).toFixed(2)
-            : 0
+              newBieItem?.critical > 0
+                ? newBieItem?.critical * 100 > 100
+                  ? 100
+                  : (newBieItem?.critical * 100).toFixed(2)
+                : 0
             }}%
           </p>
           <p>装备评分: {{ newBieItem?.score }}</p>
@@ -961,1043 +953,1044 @@
   </div>
 </template>
 <script setup>
-  import { useRouter } from 'vue-router'
-  import { ref, computed, watch, onMounted } from 'vue'
-  // 标签组件
-  import tag from '@/components/tag.vue'
-  // 商店
-  import shop from '@/plugins/shop'
-  // 装备
-  import equip from '@/plugins/equip'
-  // 数据导出
-  import { saveAs } from 'file-saver'
-  // 图鉴
-  import equipAll from '@/plugins/equipAll'
-  // 成就
-  import achievement from '@/plugins/achievement'
-  import equipTooltip from '@/components/equipTooltip.vue'
-  import { ElMessageBox } from 'element-plus'
-  import { useMainStore } from '@/plugins/store'
-  import { useAuthStore } from '@/plugins/authStore'
-  import {
-    maxLv,
-    dropdownType,
-    levelNames,
-    formatNumberToChineseUnit,
-    genre,
-    levels,
-    gameNotifys,
-    propItemNames,
-    dropdownTypeObject
-  } from '@/plugins/game'
-  import { xiuxianApi } from '@/api'
+import { useRouter } from 'vue-router'
+import { ref, computed, watch, onMounted } from 'vue'
+// 标签组件
+import tag from '@/components/tag.vue'
+// 商店
+import shop from '@/plugins/shop'
+// 装备
+import equip from '@/plugins/equip'
+// 数据导出
+import { saveAs } from 'file-saver'
+// 图鉴
+import equipAll from '@/plugins/equipAll'
+// 成就
+import achievement from '@/plugins/achievement'
+import equipTooltip from '@/components/equipTooltip.vue'
+import { ElMessageBox } from 'element-plus'
+import { useMainStore } from '@/plugins/store'
+import { useAuthStore } from '@/plugins/authStore'
+import {
+  maxLv,
+  dropdownType,
+  levelNames,
+  formatNumberToChineseUnit,
+  genre,
+  levels,
+  gameNotifys,
+  propItemNames,
+  dropdownTypeObject
+} from '@/plugins/game'
+import { xiuxianApi } from '@/api'
 
-  const store = useMainStore()
-  const authStore = useAuthStore()
-  const router = useRouter()
-  const ver = ref('1.0.0')
-  // 错误信息
-  const err = ref('')
-  const show = ref(false)
-  // 错误信息弹窗
-  const errBox = ref(false)
-  // boss数据
-  const boss = ref(store.boss)
-  // 玩家属性
-  const player = ref(store.player)
-  const actions = ref([])
-  const isLevel = ref(false)
-  // 灵宠信息弹窗
-  const petShow = ref(false)
-  // 灵宠数据
-  const petInfo = ref({})
-  // 炼器保护
-  const protect = ref(false)
-  // 炼器增幅
-  const increase = ref(false)
-  // 修改昵称
-  const editName = ref(false)
-  const levelsNum = ref({
-    info: 1,
-    pink: 7,
-    danger: 6,
-    purple: 4,
-    primary: 3,
-    success: 2,
-    warning: 5
-  })
-  // 新手礼包弹窗
-  const newBieBox = ref(false)
-  const storyText = ref('')
-  // 商店商品价格
-  const shopPrice = ref(100)
-  // 新手礼包数据
-  const newBieData = ref([])
-  const shopActive = ref('weapon')
-  const activeName = ref('illustrations')
-  /// 新手礼包装备信息
-  const newBieItem = ref({})
-  // 上传的脚本文件
-  const scriptFile = ref('')
-  // 灵宠信息弹窗
-  const petItemShow = ref(false)
-  const backPackItem = ref([
-    { type: 'weapon', name: '神兵' },
-    { type: 'armor', name: '护甲' },
-    { type: 'accessory', name: '灵宝' },
-    { type: 'sutra', name: '法器' }
-  ])
-  const petRootBone = ref(false)
-  const petCollapse = ref('')
-  // 图鉴弹窗
-  const equipAllShow = ref(false)
-  // 道侣弹窗
-  const wifeItemShow = ref(false)
-  // 装备信息
-  const inventoryInfo = ref({})
-  // 新手礼包装备信息弹窗
-  const newBieInfoBox = ref(false)
-  // 新手礼包刷新状态
-  const newBieLoading = ref(false)
-  // 装备信息弹窗
-  const inventoryShow = ref(false)
-  // 炼器弹窗
-  const strengthenShow = ref(false)
-  // 炼器的信息
-  const strengthenInfo = ref({})
-  const achievementAll = ref([])
-  // 选择分解的装备品阶
-  // const checkedEquipmen = ref([])
-  const inventoryActive = ref('equipment')
-  const equipmentActive = ref('weapon')
-  // 所有装备品阶
-  const AllEquipmenType = ref(['info', 'success', 'primary', 'purple', 'warning', 'danger', 'pink'])
-  // 灵宠转生勾选状态
-  const petReincarnation = ref(false)
-  const achievementActive = ref('pet')
-  const inventoryCollapse = ref('')
-  const petDropdownActive = ref('')
-  const illustrationsItems = ref([])
-  // 批量分解弹窗
-  const sellingEquipmentShow = ref(false)
-  const illustrationsActive = ref('weapon')
-  const equipmentDropdownActive = ref('')
-  // 道具背包对象转数组
-  const sortedProps = computed(() => {
-    const obj = player.value.props
-    return Object.keys(obj).map(key => ({ name: key, num: obj[key] }))
-  })
+const store = useMainStore()
+const authStore = useAuthStore()
+const router = useRouter()
+const ver = ref('1.0.0')
+// 错误信息
+const err = ref('')
+const show = ref(false)
+// 错误信息弹窗
+const errBox = ref(false)
+// boss数据
+const boss = ref(store.boss)
+// 玩家属性
+const player = ref(store.player)
+const actions = ref([])
+const isLevel = ref(false)
+// 灵宠信息弹窗
+const petShow = ref(false)
+// 灵宠数据
+const petInfo = ref({})
+// 炼器保护
+const protect = ref(false)
+// 炼器增幅
+const increase = ref(false)
+// 修改昵称
+const editName = ref(false)
+const levelsNum = ref({
+  info: 1,
+  pink: 7,
+  danger: 6,
+  purple: 4,
+  primary: 3,
+  success: 2,
+  warning: 5
+})
+// 新手礼包弹窗
+const newBieBox = ref(false)
+const storyText = ref('')
+// 商店商品价格
+const shopPrice = ref(100)
+// 新手礼包数据
+const newBieData = ref([])
+const shopActive = ref('weapon')
+const activeName = ref('illustrations')
+/// 新手礼包装备信息
+const newBieItem = ref({})
+// 上传的脚本文件
+const scriptFile = ref('')
+// 灵宠信息弹窗
+const petItemShow = ref(false)
+const backPackItem = ref([
+  { type: 'weapon', name: '神兵' },
+  { type: 'armor', name: '护甲' },
+  { type: 'accessory', name: '灵宝' },
+  { type: 'sutra', name: '法器' }
+])
+const petRootBone = ref(false)
+const petCollapse = ref('')
+// 图鉴弹窗
+const equipAllShow = ref(false)
+// 道侣弹窗
+const wifeItemShow = ref(false)
+// 装备信息
+const inventoryInfo = ref({})
+// 新手礼包装备信息弹窗
+const newBieInfoBox = ref(false)
+// 新手礼包刷新状态
+const newBieLoading = ref(false)
+// 装备信息弹窗
+const inventoryShow = ref(false)
+// 炼器弹窗
+const strengthenShow = ref(false)
+// 炼器的信息
+const strengthenInfo = ref({})
+const achievementAll = ref([])
+// 选择分解的装备品阶
+// const checkedEquipmen = ref([])
+const inventoryActive = ref('equipment')
+const equipmentActive = ref('weapon')
+// 所有装备品阶
+const AllEquipmenType = ref(['info', 'success', 'primary', 'purple', 'warning', 'danger', 'pink'])
+// 灵宠转生勾选状态
+const petReincarnation = ref(false)
+const achievementActive = ref('pet')
+const inventoryCollapse = ref('')
+const petDropdownActive = ref('')
+const illustrationsItems = ref([])
+// 批量分解弹窗
+const sellingEquipmentShow = ref(false)
+const illustrationsActive = ref('weapon')
+const equipmentDropdownActive = ref('')
+// 道具背包对象转数组
+const sortedProps = computed(() => {
+  const obj = player.value.props
+  return Object.keys(obj).map(key => ({ name: key, num: obj[key] }))
+})
 
-  onMounted(() => {
-    achievementAll.value = achievement.all()
-    illustrationsItems.value = equipAll.drawPrize(maxLv)
-    startGame()
-  })
+onMounted(() => {
+  achievementAll.value = achievement.all()
+  illustrationsItems.value = equipAll.drawPrize(maxLv)
+  store.syncPlayerNameFromAuth()
+  startGame()
+})
 
-  // 监听背包标签页切换
-  watch(
-    () => inventoryActive.value,
-    type => {
-      if (type == 'shop' && !player.value.shopData.length) {
-        player.value.shopData = shop.drawPrize(maxLv)
-      }
-      if (type == 'props') gameNotifys({ title: '提示', message: '点击道具可以获取道具相关信息' })
+// 监听背包标签页切换
+watch(
+  () => inventoryActive.value,
+  type => {
+    if (type == 'shop' && !player.value.shopData.length) {
+      player.value.shopData = shop.drawPrize(maxLv)
     }
-  )
-
-  // 监听玩家属性，防止NaN值
-  watch(
-    () => player.value.attack,
-    val => {
-      if (isNaN(val)) reset()
-      else return val
-    }
-  )
-
-  watch(
-    () => player.value.health,
-    val => {
-      if (isNaN(val)) reset()
-      else return val
-    }
-  )
-
-  watch(
-    () => player.value.defense,
-    val => {
-      if (isNaN(val)) reset()
-      else return val
-    }
-  )
-
-  watch(
-    () => player.value.maxHealth,
-    val => {
-      if (isNaN(val)) reset()
-      else return val
-    }
-  )
-
-  watch(
-    () => player.value.critical,
-    val => {
-      if (isNaN(val) || val < 0) {
-        storyText.value =
-          '暴击属性出错, 请手动卸下身上穿的所有装备后刷新游戏<br>如果身上没有装备却一直存在此提示可以尝试穿一次装备再刷新游戏'
-        return 0
-      } else {
-        return val
-      }
-    }
-  )
-
-  watch(
-    () => player.value.dodge,
-    val => {
-      if (isNaN(val) || val < 0) {
-        storyText.value =
-          '闪避属性出错, 请手动卸下身上穿的所有装备后刷新游戏<br>如果身上没有装备却一直存在此提示可以尝试穿一次装备再刷新游戏'
-        return 0
-      } else {
-        return val
-      }
-    }
-  )
-
-  // 初始化游戏
-  const startGame = () => {
-    storyText.value = '你的修仙之旅开始了。'
-    actions.value = [
-      { text: '开始修炼', handler: () => router.push('/cultivate') },
-      {
-        text: '探索秘境',
-        handler: () => {
-          if (!player.value.isNewbie) {
-            gameNotifys({ title: '提示', message: `新手礼包未领取` })
-            return
-          }
-          if (player.value.level < 10) {
-            gameNotifys({
-              title: '实力不足提示',
-              message: `外面太危险了, 请突破到${levelNames(10)}再出去吧!`
-            })
-            return
-          }
-          router.push('/map')
-        }
-      },
-      {
-        text: '图鉴与成就',
-        handler: () => {
-          equipAllShow.value = true
-        }
-      },
-      { text: '挑战无尽塔', handler: () => router.push('/endlesstower') },
-      { text: '世界BOSS', handler: () => router.push('/boss') },
-      { text: '休闲娱乐', handler: () => router.push('/game') }
-    ]
-    // 初始化玩家当前气血
-    player.value.health = player.value.maxHealth
+    if (type == 'props') gameNotifys({ title: '提示', message: '点击道具可以获取道具相关信息' })
   }
+)
 
-  // 删除脚本
-  const deleteScriptData = () => {
-    // 清空玩家导入的脚本
-    player.value.script = ''
-    // 发送提示
-    gameNotifys({ title: '提示', message: '脚本删除成功' })
-    // 刷新页面
-    location.reload(1)
+// 监听玩家属性，防止NaN值
+watch(
+  () => player.value.attack,
+  val => {
+    if (isNaN(val)) reset()
+    else return val
   }
+)
 
-  // 在上传脚本之前触发
-  const scriptBeforeUpload = file => {
-    // 保存当前文件
-    scriptFile.value = file
-    // 显示确认对话框
-    uploadScript()
-    // 阻止上传
-    return false
+watch(
+  () => player.value.health,
+  val => {
+    if (isNaN(val)) reset()
+    else return val
   }
+)
 
-  // 导入脚本
-  const uploadScript = () => {
-    ElMessageBox.confirm('', '脚本导入须知', {
-      center: true,
-      message: '导入前请确认脚本可用并备份存档<br>如因导入错误脚本导致的存档游戏出现任何问题<br>作者概不负责',
-      cancelButtonText: '考虑一下',
-      confirmButtonText: '我会为自己的行为负责',
-      dangerouslyUseHTMLString: true
-    })
-      .then(() => {
-        const file = scriptFile.value
-        const reader = new FileReader()
-        reader.onload = e => {
-          try {
-            const script = e.target.result
-            // 保存玩家导入的脚本
-            player.value.script = script
-            // 发送提示
-            gameNotifys({ title: '提示', message: '脚本导入成功' })
-            // 刷新页面
-            location.reload(1)
-          } catch (err) {
-            err.value = err
-            errBox.value = true
-            gameNotifys({
-              title: '脚本导入失败',
-              message: '复制错误信息到QQ群内'
-            })
-          }
-        }
-        reader.readAsText(file)
-      })
-      .catch(() => {})
+watch(
+  () => player.value.defense,
+  val => {
+    if (isNaN(val)) reset()
+    else return val
   }
+)
 
-  // 修改名字
-  const editUserName = () => {
-    ElMessageBox.prompt('每次修改名字需要花费100灵石', '修改名字', {
-      inputPattern: /^(?=\S).*/,
-      cancelButtonText: '取消修改',
-      confirmButtonText: '确定修改',
-      inputErrorMessage: '名字不可为空'
-    })
-      .then(async ({ value }) => {
-        if (player.value.props.money < 100) {
-          gameNotifys({ title: '提示', message: '灵石不足, 名字修改失败' })
+watch(
+  () => player.value.maxHealth,
+  val => {
+    if (isNaN(val)) reset()
+    else return val
+  }
+)
+
+watch(
+  () => player.value.critical,
+  val => {
+    if (isNaN(val) || val < 0) {
+      storyText.value =
+        '暴击属性出错, 请手动卸下身上穿的所有装备后刷新游戏<br>如果身上没有装备却一直存在此提示可以尝试穿一次装备再刷新游戏'
+      return 0
+    } else {
+      return val
+    }
+  }
+)
+
+watch(
+  () => player.value.dodge,
+  val => {
+    if (isNaN(val) || val < 0) {
+      storyText.value =
+        '闪避属性出错, 请手动卸下身上穿的所有装备后刷新游戏<br>如果身上没有装备却一直存在此提示可以尝试穿一次装备再刷新游戏'
+      return 0
+    } else {
+      return val
+    }
+  }
+)
+
+// 初始化游戏
+const startGame = () => {
+  storyText.value = '你的修仙之旅开始了。'
+  actions.value = [
+    { text: '开始修炼', handler: () => router.push('/cultivate') },
+    {
+      text: '探索秘境',
+      handler: () => {
+        if (!player.value.isNewbie) {
+          gameNotifys({ title: '提示', message: `新手礼包未领取` })
           return
         }
-        try {
-          // 更新玩家名
-          await xiuxianApi.updatePlayerName({
-            userId: authStore.userId,
-            playerName: value
+        if (player.value.level < 10) {
+          gameNotifys({
+            title: '实力不足提示',
+            message: `外面太危险了, 请突破到${levelNames(10)}再出去吧!`
           })
-
-          // 修改名字
-          player.value.name = value
-          // 扣除灵石
-          player.value.props.money -= 100
-          // 发送通知
-          gameNotifys({ title: '提示', message: '修改成功' })
-        } catch (error) {
-          gameNotifys({ title: '提示', message: '名字修改失败，请重试' })
+          return
         }
-      })
-      .catch(() => {})
-  }
+        router.push('/map')
+      }
+    },
+    {
+      text: '图鉴与成就',
+      handler: () => {
+        equipAllShow.value = true
+      }
+    },
+    { text: '挑战无尽塔', handler: () => router.push('/endlesstower') },
+    { text: '世界BOSS', handler: () => router.push('/boss') },
+    { text: '休闲娱乐', handler: () => router.push('/game') }
+  ]
+  // 初始化玩家当前气血
+  player.value.health = player.value.maxHealth
+}
 
-  // 清空存档
-  const clearSave = () => {
-    ElMessageBox.confirm('由于当前游戏版本不兼容存档版本,需要删档处理', '存档删除提示', {
-      center: true,
-      showClose: false,
-      showCancelButton: false,
-      confirmButtonText: '确定',
-      closeOnClickModal: false,
-      closeOnPressEscape: false
-    }).then(() => {
-      // 清空存档
-      localStorage.removeItem('vuex')
-      // 刷新页面
-      location.reload(1)
-    })
-  }
+// 删除脚本
+const deleteScriptData = () => {
+  // 清空玩家导入的脚本
+  player.value.script = ''
+  // 发送提示
+  gameNotifys({ title: '提示', message: '脚本删除成功' })
+  // 刷新页面
+  location.reload(1)
+}
 
-  // 重置
-  const reset = () => {
-    storyText.value = '属性出错, 请添加QQ群:920930589, 上传"存档"并联系作者解决'
-    ElMessageBox.confirm('你是否要导出存档?', '存档导出提示', {
-      center: true,
-      confirmButtonText: '确定'
-    })
-      .then(() => {
-        exportData()
-      })
-      .catch(() => {})
-  }
+// 在上传脚本之前触发
+const scriptBeforeUpload = file => {
+  // 保存当前文件
+  scriptFile.value = file
+  // 显示确认对话框
+  uploadScript()
+  // 阻止上传
+  return false
+}
 
-  // 批量放生灵宠
-  const sellingPet = () => {
-    // 获取玩家背包装备
-    const pets = player.value.pets
-    // 检查背包是否存在灵宠
-    if (!pets.length) {
-      gameNotifys({
-        title: '灵宠放生提示',
-        message: '你没有可以放生的灵宠'
-      })
-      return
-    }
-    // 过滤出可以放生的灵宠
-    const selling = pets.filter(item => !item.lock)
-    // 检查是否有可以放生的灵宠
-    if (!selling.length) {
-      gameNotifys({
-        title: '灵宠放生提示',
-        message: '你没有可以放生的未锁定灵宠'
-      })
-      return
-    }
-    // 关闭弹窗
-    sellingEquipmentShow.value = false
-    // 计算未锁定灵宠放生所得培养丹
-    const cultivateDanTotal = selling.reduce((total, i) => {
-      // 灵宠转生次数
-      const reincarnation = i.reincarnation ? i.reincarnation : 1
-      let level = i.level * reincarnation
-      level = Number(level) || 0
-      return total + Math.floor(level)
-    }, 0)
-    // 增加培养丹数量
-    player.value.props.cultivateDan += cultivateDanTotal
-    // 清空背包内所有未锁定灵宠
-    player.value.pets = pets.filter(item => item.lock)
-    gameNotifys({
-      title: '灵宠放生提示',
-      message: `所有非锁定灵宠已成功放生, 他们临走前一起赠与了你${cultivateDanTotal}个培养丹`
-    })
-  }
-
-  // 批量分解装备
-  const sellingEquipment = () => {
-    // 获取玩家背包装备
-    const inventory = player.value.inventory
-    // 获取玩家装备分解设置
-    const sellingEquipmen = player.value.sellingEquipmentData
-    // 检查是否选择了需要分解的品阶
-    if (!sellingEquipmen.length) {
-      gameNotifys({
-        title: '背包装备分解提示',
-        message: '你没有选择勾选需要分解的品阶'
-      })
-      return
-    }
-    // 过滤出可以分解的装备
-    const selling = inventory.filter(item => sellingEquipmen.includes(item.quality) && !item.lock)
-    // 检查是否有可售卖的装备
-    if (!selling.length) {
-      gameNotifys({
-        title: '背包装备分解提示',
-        message: '背包内并没有可以售卖的装备'
-      })
-      return
-    }
-    // 关闭弹窗
-    sellingEquipmentShow.value = false
-    // 计算未锁定装备与选中分解品阶的等级总和
-    const strengtheningStoneTotal = selling.reduce((total, i) => {
-      let level = i.level + (i.level * player.value.reincarnation) / 10
-      level = Number(level) || 0
-      return total + Math.floor(level)
-    }, 0)
-    // 增加灵石数量
-    player.value.props.money += selling.length
-    // 增加炼器石数量
-    player.value.props.strengtheningStone += strengtheningStoneTotal
-    // 清空背包内所有未锁定装备与选中分解的品阶
-    player.value.inventory = inventory.filter(item => !sellingEquipmen.includes(item.quality) || item.lock)
-    gameNotifys({
-      title: '背包装备分解提示',
-      message: `背包内所有非锁定装备已成功分解, 你获得了${strengtheningStoneTotal}个炼器石和${selling.length}个灵石`
-    })
-  }
-
-  // 修改玩家装备分解设置
-  const sellingEquipmentDataChange = val => {
-    player.value.sellingEquipmentData = val
-  }
-
-  // 刷新商店
-  const refreshShop = () => {
-    if (player.value.props.money < 500) {
-      gameNotifys({
-        title: '提示',
-        message: '灵石不足, 刷新商店需要500灵石'
-      })
-      return
-    }
-    // 扣除灵石
-    player.value.props.money -= 500
-    // 更新鸿蒙商店数据
-    player.value.shopData = shop.drawPrize(maxLv)
-    gameNotifys({ title: '提示', message: '刷新成功' })
-  }
-
-  // 删档
-  const deleteData = () => {
-    ElMessageBox.confirm('你确定要删除存档吗?建议数据出问题的时候再删除', '数据删除提示', {
-      center: true,
-      cancelButtonText: '我点错了',
-      confirmButtonText: '确定以及肯定'
-    })
-      .then(async () => {
+// 导入脚本
+const uploadScript = () => {
+  ElMessageBox.confirm('', '脚本导入须知', {
+    center: true,
+    message: '导入前请确认脚本可用并备份存档<br>如因导入错误脚本导致的存档游戏出现任何问题<br>作者概不负责',
+    cancelButtonText: '考虑一下',
+    confirmButtonText: '我会为自己的行为负责',
+    dangerouslyUseHTMLString: true
+  })
+    .then(() => {
+      const file = scriptFile.value
+      const reader = new FileReader()
+      reader.onload = e => {
         try {
-          // 删除数据库中的存档
-          await xiuxianApi.deleteSave(authStore.userId)
-
-          gameNotifys({ title: '提示', message: '存档删除成功' })
-          // 清空本地存档
-          localStorage.removeItem('vuex')
-          // 设置玩家名字
-          player.value.name = authStore.userName
+          const script = e.target.result
+          // 保存玩家导入的脚本
+          player.value.script = script
+          // 发送提示
+          gameNotifys({ title: '提示', message: '脚本导入成功' })
           // 刷新页面
           location.reload(1)
-        } catch (error) {
-          gameNotifys({ title: '提示', message: '存档删除失败，请重试' })
+        } catch (err) {
+          err.value = err
+          errBox.value = true
+          gameNotifys({
+            title: '脚本导入失败',
+            message: '复制错误信息到QQ群内'
+          })
         }
-      })
-      .catch(() => {})
-  }
-
-  // 退出登录
-  const logout = () => {
-    ElMessageBox.confirm('确定要退出登录吗？', '退出登录', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning'
+      }
+      reader.readAsText(file)
     })
-      .then(() => {
-        // 清空store中的用户信息
-        authStore.logout()
-        // 跳转到登录页
-        router.push('/login')
-      })
-      .catch(() => { })
-  }
+    .catch(() => { })
+}
 
-  // 电脑导入存档
-  const importData = data => {
-    const file = data.file
-    const reader = new FileReader()
-    reader.onload = e => {
+// 修改名字
+const editUserName = () => {
+  ElMessageBox.prompt('每次修改名字需要花费100灵石', '修改名字', {
+    inputPattern: /^(?=\S).*/,
+    cancelButtonText: '取消修改',
+    confirmButtonText: '确定修改',
+    inputErrorMessage: '名字不可为空'
+  })
+    .then(async ({ value }) => {
+      if (player.value.props.money < 100) {
+        gameNotifys({ title: '提示', message: '灵石不足, 名字修改失败' })
+        return
+      }
       try {
-        // 导入存档
-        localStorage.setItem('vuex', e.target.result)
-        // 刷新页面
-        location.reload(1)
-      } catch (err) {
-        err.value = err
-        errBox.value = true
-        gameNotifys({
-          title: '脚本导入失败',
-          message: '复制错误信息到QQ群内'
+        // 更新玩家名
+        await xiuxianApi.updatePlayerName({
+          userId: authStore.userId,
+          playerName: value
         })
+
+        // 修改名字
+        authStore.updatePlayerName(value)
+        store.updatePlayerName(value)
+        // 扣除灵石
+        player.value.props.money -= 100
+        // 发送通知
+        gameNotifys({ title: '提示', message: '修改成功' })
+      } catch (error) {
+        gameNotifys({ title: '提示', message: '名字修改失败，请重试' })
       }
-    }
-    reader.readAsText(file)
-  }
-
-  // 导出存档
-  const exportData = () => {
-    const today = new Date()
-    const year = today.getFullYear()
-    const month = String(today.getMonth() + 1).padStart(2, '0')
-    const day = String(today.getDate()).padStart(2, '0')
-    const hours = String(today.getHours()).padStart(2, '0')
-    const minutes = String(today.getMinutes()).padStart(2, '0')
-    const seconds = String(today.getSeconds()).padStart(2, '0')
-    const blob = new Blob([localStorage.getItem('vuex')], {
-      type: 'application/json;charset=utf-8'
     })
-    const name = `我的文字修仙全靠刷-${year}${month}${day}${hours}${minutes}${seconds}-${ver.value}.json`
-    saveAs(blob, name)
-  }
+    .catch(() => { })
+}
 
-  // 批量分解装备弹窗
-  const sellingEquipmentBox = () => {
-    show.value = false
-    sellingEquipmentShow.value = true
-  }
+// 清空存档
+const clearSave = () => {
+  ElMessageBox.confirm('由于当前游戏版本不兼容存档版本,需要删档处理', '存档删除提示', {
+    center: true,
+    showClose: false,
+    showCancelButton: false,
+    confirmButtonText: '确定',
+    closeOnClickModal: false,
+    closeOnPressEscape: false
+  }).then(() => {
+    // 清空存档
+    localStorage.removeItem('vuex')
+    // 刷新页面
+    location.reload(1)
+  })
+}
 
-  // 穿装备
-  const equipItem = (id, type) => {
-    const inventoryItem = getObjectById(id, player.value.inventory)
-    // 如果当前装备境界大于人物的境界
-    if (!player.value.reincarnation && inventoryItem.level > player.value.level) {
-      gameNotifys({ title: '当前境界不足', message: '无法穿戴该装备' })
-      return
+// 重置
+const reset = () => {
+  storyText.value = '属性出错, 请添加QQ群:920930589, 上传"存档"并联系作者解决'
+  ElMessageBox.confirm('你是否要导出存档?', '存档导出提示', {
+    center: true,
+    confirmButtonText: '确定'
+  })
+    .then(() => {
+      exportData()
+    })
+    .catch(() => { })
+}
+
+// 批量放生灵宠
+const sellingPet = () => {
+  // 获取玩家背包装备
+  const pets = player.value.pets
+  // 检查背包是否存在灵宠
+  if (!pets.length) {
+    gameNotifys({
+      title: '灵宠放生提示',
+      message: '你没有可以放生的灵宠'
+    })
+    return
+  }
+  // 过滤出可以放生的灵宠
+  const selling = pets.filter(item => !item.lock)
+  // 检查是否有可以放生的灵宠
+  if (!selling.length) {
+    gameNotifys({
+      title: '灵宠放生提示',
+      message: '你没有可以放生的未锁定灵宠'
+    })
+    return
+  }
+  // 关闭弹窗
+  sellingEquipmentShow.value = false
+  // 计算未锁定灵宠放生所得培养丹
+  const cultivateDanTotal = selling.reduce((total, i) => {
+    // 灵宠转生次数
+    const reincarnation = i.reincarnation ? i.reincarnation : 1
+    let level = i.level * reincarnation
+    level = Number(level) || 0
+    return total + Math.floor(level)
+  }, 0)
+  // 增加培养丹数量
+  player.value.props.cultivateDan += cultivateDanTotal
+  // 清空背包内所有未锁定灵宠
+  player.value.pets = pets.filter(item => item.lock)
+  gameNotifys({
+    title: '灵宠放生提示',
+    message: `所有非锁定灵宠已成功放生, 他们临走前一起赠与了你${cultivateDanTotal}个培养丹`
+  })
+}
+
+// 批量分解装备
+const sellingEquipment = () => {
+  // 获取玩家背包装备
+  const inventory = player.value.inventory
+  // 获取玩家装备分解设置
+  const sellingEquipmen = player.value.sellingEquipmentData
+  // 检查是否选择了需要分解的品阶
+  if (!sellingEquipmen.length) {
+    gameNotifys({
+      title: '背包装备分解提示',
+      message: '你没有选择勾选需要分解的品阶'
+    })
+    return
+  }
+  // 过滤出可以分解的装备
+  const selling = inventory.filter(item => sellingEquipmen.includes(item.quality) && !item.lock)
+  // 检查是否有可售卖的装备
+  if (!selling.length) {
+    gameNotifys({
+      title: '背包装备分解提示',
+      message: '背包内并没有可以售卖的装备'
+    })
+    return
+  }
+  // 关闭弹窗
+  sellingEquipmentShow.value = false
+  // 计算未锁定装备与选中分解品阶的等级总和
+  const strengtheningStoneTotal = selling.reduce((total, i) => {
+    let level = i.level + (i.level * player.value.reincarnation) / 10
+    level = Number(level) || 0
+    return total + Math.floor(level)
+  }, 0)
+  // 增加灵石数量
+  player.value.props.money += selling.length
+  // 增加炼器石数量
+  player.value.props.strengtheningStone += strengtheningStoneTotal
+  // 清空背包内所有未锁定装备与选中分解的品阶
+  player.value.inventory = inventory.filter(item => !sellingEquipmen.includes(item.quality) || item.lock)
+  gameNotifys({
+    title: '背包装备分解提示',
+    message: `背包内所有非锁定装备已成功分解, 你获得了${strengtheningStoneTotal}个炼器石和${selling.length}个灵石`
+  })
+}
+
+// 修改玩家装备分解设置
+const sellingEquipmentDataChange = val => {
+  player.value.sellingEquipmentData = val
+}
+
+// 刷新商店
+const refreshShop = () => {
+  if (player.value.props.money < 500) {
+    gameNotifys({
+      title: '提示',
+      message: '灵石不足, 刷新商店需要500灵石'
+    })
+    return
+  }
+  // 扣除灵石
+  player.value.props.money -= 500
+  // 更新鸿蒙商店数据
+  player.value.shopData = shop.drawPrize(maxLv)
+  gameNotifys({ title: '提示', message: '刷新成功' })
+}
+
+// 删档
+const deleteData = () => {
+  ElMessageBox.confirm('你确定要删除存档吗?建议数据出问题的时候再删除', '数据删除提示', {
+    center: true,
+    cancelButtonText: '我点错了',
+    confirmButtonText: '确定以及肯定'
+  })
+    .then(async () => {
+      try {
+        // 删除数据库中的存档
+        await xiuxianApi.deleteSave(authStore.userId)
+
+        gameNotifys({ title: '提示', message: '存档删除成功' })
+        store.initializePlayer(authStore.playerName)
+        // 延迟后刷新页面
+        setTimeout(() => {
+          location.reload(1)
+        }, 100)
+      } catch (error) {
+        gameNotifys({ title: '提示', message: '存档删除失败，请重试' })
+      }
+    })
+    .catch(() => { })
+}
+
+// 退出登录
+const logout = () => {
+  ElMessageBox.confirm('确定要退出登录吗？', '退出登录', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  })
+    .then(() => {
+      // 清空store中的用户信息
+      authStore.logout()
+      // 跳转到登录页
+      router.push('/login')
+    })
+    .catch(() => { })
+}
+
+// 电脑导入存档
+const importData = data => {
+  const file = data.file
+  const reader = new FileReader()
+  reader.onload = e => {
+    try {
+      // 导入存档
+      localStorage.setItem('vuex', e.target.result)
+      // 刷新页面
+      location.reload(1)
+    } catch (err) {
+      err.value = err
+      errBox.value = true
+      gameNotifys({
+        title: '脚本导入失败',
+        message: '复制错误信息到QQ群内'
+      })
     }
-    // 如果当前类型的装备已经穿戴，则将其放回背包
-    if (JSON.stringify(player.value.equipment[type]) != '{}') {
-      const equipment = player.value.equipment[type]
-      // 更新玩家属性，移除当前穿戴装备的属性加成
-      playerAttribute(
-        -equipment?.dodge,
-        -equipment?.attack,
-        -equipment?.health,
-        -equipment?.critical,
-        -equipment?.defense
-      )
-      // 将当前装备放回背包
-      player.value.inventory.push(equipment)
-    }
-    // 装备新装备
-    player.value.equipment[type] = inventoryItem
-    // 更新玩家属性，添加当前装备的属性加成
+  }
+  reader.readAsText(file)
+}
+
+// 导出存档
+const exportData = () => {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const day = String(today.getDate()).padStart(2, '0')
+  const hours = String(today.getHours()).padStart(2, '0')
+  const minutes = String(today.getMinutes()).padStart(2, '0')
+  const seconds = String(today.getSeconds()).padStart(2, '0')
+  const blob = new Blob([localStorage.getItem('vuex')], {
+    type: 'application/json;charset=utf-8'
+  })
+  const name = `我的文字修仙全靠刷-${year}${month}${day}${hours}${minutes}${seconds}-${ver.value}.json`
+  saveAs(blob, name)
+}
+
+// 批量分解装备弹窗
+const sellingEquipmentBox = () => {
+  show.value = false
+  sellingEquipmentShow.value = true
+}
+
+// 穿装备
+const equipItem = (id, type) => {
+  const inventoryItem = getObjectById(id, player.value.inventory)
+  // 如果当前装备境界大于人物的境界
+  if (!player.value.reincarnation && inventoryItem.level > player.value.level) {
+    gameNotifys({ title: '当前境界不足', message: '无法穿戴该装备' })
+    return
+  }
+  // 如果当前类型的装备已经穿戴，则将其放回背包
+  if (JSON.stringify(player.value.equipment[type]) != '{}') {
+    const equipment = player.value.equipment[type]
+    // 更新玩家属性，移除当前穿戴装备的属性加成
     playerAttribute(
-      inventoryItem.dodge,
-      inventoryItem.attack,
-      inventoryItem.health,
-      inventoryItem.critical,
-      inventoryItem.defense
+      -equipment?.dodge,
+      -equipment?.attack,
+      -equipment?.health,
+      -equipment?.critical,
+      -equipment?.defense
     )
-    // 从背包中移除新装备
-    player.value.inventory = player.value.inventory.filter(item => item.id !== id)
-    // 重置类型
-    type = ''
-    // 关闭道具信息弹窗
-    inventoryShow.value = false
+    // 将当前装备放回背包
+    player.value.inventory.push(equipment)
   }
-  // 道具锁定or道具解锁
-  const inventoryLock = id => {
-    let inventoryItem = getObjectById(id, player.value.inventory)
-    inventoryItem.lock = !inventoryItem.lock
-    gameNotifys({
-      title: !inventoryItem.lock ? '装备解锁提示' : '装备锁定提示',
-      message: !inventoryItem.lock ? '装备解锁成功' : '装备锁定成功'
+  // 装备新装备
+  player.value.equipment[type] = inventoryItem
+  // 更新玩家属性，添加当前装备的属性加成
+  playerAttribute(
+    inventoryItem.dodge,
+    inventoryItem.attack,
+    inventoryItem.health,
+    inventoryItem.critical,
+    inventoryItem.defense
+  )
+  // 从背包中移除新装备
+  player.value.inventory = player.value.inventory.filter(item => item.id !== id)
+  // 重置类型
+  type = ''
+  // 关闭道具信息弹窗
+  inventoryShow.value = false
+}
+// 道具锁定or道具解锁
+const inventoryLock = id => {
+  let inventoryItem = getObjectById(id, player.value.inventory)
+  inventoryItem.lock = !inventoryItem.lock
+  gameNotifys({
+    title: !inventoryItem.lock ? '装备解锁提示' : '装备锁定提示',
+    message: !inventoryItem.lock ? '装备解锁成功' : '装备锁定成功'
+  })
+}
+// 灵宠出战
+const petCarry = item => {
+  // 根据灵宠id查找灵宠信息
+  const petItem = getObjectById(item.id, player.value.pets)
+  // 如果已经有灵宠出战就收回
+  if (JSON.stringify(player.value.pet) != '{}') {
+    const itemInfo = player.value.pet
+    // 更新玩家属性，移除出战灵宠的属性加成
+    playerAttribute(-itemInfo.dodge, -itemInfo.attack, -itemInfo.health, -itemInfo.critical, -itemInfo.defense)
+    // 收回当前出战的灵宠
+    player.value.pets.push(player.value.pet)
+  }
+  // 关闭灵宠信息弹窗
+  petShow.value = false
+  // 出战当前选择的灵宠
+  player.value.pet = petItem
+  // 更新玩家属性，添加当前出战灵宠的属性加成
+  playerAttribute(petItem.dodge, petItem.attack, petItem.health, petItem.critical, petItem.defense)
+  // 从灵宠背包中移除这个灵宠
+  player.value.pets = player.value.pets.filter(i => i.id !== item.id)
+}
+
+// 放生灵宠
+const petClose = item => {
+  ElMessageBox.confirm(
+    `你确定要放生<span class="el-tag el-tag--${computePetsLevel(item.level)}">${item.name}(${levelNames(
+      item.level
+    )})</span>吗?`,
+    '灵宠放生通知',
+    {
+      center: true,
+      cancelButtonText: '取消放生',
+      confirmButtonText: '确定放生',
+      dangerouslyUseHTMLString: true
+    }
+  )
+    .then(() => {
+      // 灵宠转生次数
+      const reincarnation = item.reincarnation ? item.reincarnation : 1
+      // 获得的培养丹数量
+      const num = item.level * reincarnation
+      // 关闭灵宠信息弹窗
+      petShow.value = false
+      // 增加培养丹数量
+      player.value.props.cultivateDan += num
+      // 删除道具
+      player.value.pets = player.value.pets.filter(obj => obj.id !== item.id)
+      // 装备分解通知
+      gameNotifys({
+        title: `${item.name}已成功放生`,
+        message: `对方临走时赠与了你${num}个培养丹`
+      })
     })
-  }
-  // 灵宠出战
-  const petCarry = item => {
-    // 根据灵宠id查找灵宠信息
-    const petItem = getObjectById(item.id, player.value.pets)
-    // 如果已经有灵宠出战就收回
-    if (JSON.stringify(player.value.pet) != '{}') {
-      const itemInfo = player.value.pet
-      // 更新玩家属性，移除出战灵宠的属性加成
-      playerAttribute(-itemInfo.dodge, -itemInfo.attack, -itemInfo.health, -itemInfo.critical, -itemInfo.defense)
-      // 收回当前出战的灵宠
-      player.value.pets.push(player.value.pet)
-    }
-    // 关闭灵宠信息弹窗
-    petShow.value = false
-    // 出战当前选择的灵宠
-    player.value.pet = petItem
-    // 更新玩家属性，添加当前出战灵宠的属性加成
-    playerAttribute(petItem.dodge, petItem.attack, petItem.health, petItem.critical, petItem.defense)
-    // 从灵宠背包中移除这个灵宠
-    player.value.pets = player.value.pets.filter(i => i.id !== item.id)
-  }
+    .catch(() => { })
+}
 
-  // 放生灵宠
-  const petClose = item => {
-    ElMessageBox.confirm(
-      `你确定要放生<span class="el-tag el-tag--${computePetsLevel(item.level)}">${item.name}(${levelNames(
-        item.level
-      )})</span>吗?`,
-      '灵宠放生通知',
-      {
-        center: true,
-        cancelButtonText: '取消放生',
-        confirmButtonText: '确定放生',
-        dangerouslyUseHTMLString: true
-      }
-    )
-      .then(() => {
-        // 灵宠转生次数
-        const reincarnation = item.reincarnation ? item.reincarnation : 1
-        // 获得的培养丹数量
-        const num = item.level * reincarnation
-        // 关闭灵宠信息弹窗
-        petShow.value = false
-        // 增加培养丹数量
-        player.value.props.cultivateDan += num
-        // 删除道具
-        player.value.pets = player.value.pets.filter(obj => obj.id !== item.id)
-        // 装备分解通知
-        gameNotifys({
-          title: `${item.name}已成功放生`,
-          message: `对方临走时赠与了你${num}个培养丹`
-        })
-      })
-      .catch(() => {})
-  }
+// 道具锁定or道具解锁
+const petLock = item => {
+  item.lock = !item.lock
+  gameNotifys({
+    title: !item.lock ? '灵宠解锁提示' : '灵宠锁定提示',
+    message: !item.lock ? '灵宠解锁成功' : '灵宠锁定成功'
+  })
+}
 
-  // 道具锁定or道具解锁
-  const petLock = item => {
-    item.lock = !item.lock
+// 计算身上装备和背包装备差值
+const calculateDifference = (item1, item2) => {
+  item1 = item1 || 0
+  item2 = item2 || 0
+  const isFloat = num => {
+    return Number(num) === num && num % 1 !== 0
+  }
+  const Float = item1 - parseFloat(item2) < -1 ? -1 : item1 - parseFloat(item2) > 1 ? 1 : item1 - parseFloat(item2)
+  const ojb = {
+    num: isFloat(item1) || isFloat(item2) ? (Float * 100).toFixed(2) + '%' : item1 - parseInt(item2),
+    icon: item1 > item2 ? 'success el-icon-caret-top' : item1 == item2 ? '' : 'danger el-icon-caret-bottom'
+  }
+  ojb.num = ojb.num == 0 ? '' : ojb.num
+  return ojb
+}
+
+// 炼器
+const enhance = item => {
+  // 炼器成功率
+  const successRate = calculateEnhanceSuccessRate(item)
+  // 炼器消耗道具数量
+  const calculateCost = calcEnhanceCost(item)
+  // 如果炼器石不足
+  if (calculateCost > player.value.props.strengtheningStone) {
+    // 发送通知
     gameNotifys({
-      title: !item.lock ? '灵宠解锁提示' : '灵宠锁定提示',
-      message: !item.lock ? '灵宠解锁成功' : '灵宠锁定成功'
+      title: '炼器提示',
+      message: '炼器石不足, 进行无法炼器操作',
+      position: 'top-left'
     })
+    return
   }
-
-  // 计算身上装备和背包装备差值
-  const calculateDifference = (item1, item2) => {
-    item1 = item1 || 0
-    item2 = item2 || 0
-    const isFloat = num => {
-      return Number(num) === num && num % 1 !== 0
-    }
-    const Float = item1 - parseFloat(item2) < -1 ? -1 : item1 - parseFloat(item2) > 1 ? 1 : item1 - parseFloat(item2)
-    const ojb = {
-      num: isFloat(item1) || isFloat(item2) ? (Float * 100).toFixed(2) + '%' : item1 - parseInt(item2),
-      icon: item1 > item2 ? 'success el-icon-caret-top' : item1 == item2 ? '' : 'danger el-icon-caret-bottom'
-    }
-    ojb.num = ojb.num == 0 ? '' : ojb.num
-    return ojb
+  // 如果炼器等级已满
+  if (item.strengthen == 30) {
+    // 发送通知
+    gameNotifys({
+      title: '炼器提示',
+      message: '当前装备炼器等级已满',
+      position: 'top-left'
+    })
+    return
   }
-
-  // 炼器
-  const enhance = item => {
-    // 炼器成功率
-    const successRate = calculateEnhanceSuccessRate(item)
-    // 炼器消耗道具数量
-    const calculateCost = calcEnhanceCost(item)
-    // 如果炼器石不足
-    if (calculateCost > player.value.props.strengtheningStone) {
-      // 发送通知
-      gameNotifys({
-        title: '炼器提示',
-        message: '炼器石不足, 进行无法炼器操作',
-        position: 'top-left'
-      })
-      return
-    }
-    // 如果炼器等级已满
-    if (item.strengthen == 30) {
-      // 发送通知
-      gameNotifys({
-        title: '炼器提示',
-        message: '当前装备炼器等级已满',
-        position: 'top-left'
-      })
-      return
-    }
-    // 炼器确认弹窗
-    ElMessageBox.confirm(
-      item.strengthen >= 15 && !protect.value
-        ? `当前装备炼器等级已达到+${item.strengthen}, 如果炼器失败该装备会销毁, 请问还需要炼器吗?`
-        : '你确定要炼器吗?',
-      '炼器提示',
-      {
-        cancelButtonText: '我点错了',
-        confirmButtonText: '确定以及肯定'
-      }
-    )
-      .then(() => {
-        // 如果炼器成功
-        if (Math.random() <= successRate) {
-          // 攻击
-          const attack = Math.floor(item.initial.attack * 0.2)
-          // 血量
-          const health = Math.floor(item.initial.health * 0.2)
-          // 防御
-          const defense = Math.floor(item.initial.defense * 0.2)
-          switch (item.type) {
-            // 如果是神兵
-            case 'weapon':
-              item.attack += attack
-              playerAttribute(0, attack, 0, 0, 0)
-              break
-            // 如果是防具
-            case 'armor':
-              item.health += health
-              item.defense += defense
-              playerAttribute(0, 0, health, 0, defense)
-              break
-            // 如果是灵宝或法器
-            case 'accessory':
-            case 'sutra':
-              item.attack += attack
-              item.health += health
-              item.defense += defense
-              playerAttribute(0, attack, health, 0, defense)
-              break
-            default:
-              break
-          }
-          // 增加炼器等级
-          item.strengthen++
-          // 重新计算装备评分
-          item.score = equip.calculateEquipmentScore(item.dodge, item.attack, item.health, item.critical, item.defense)
-          // 发送炼器成功通知
-          gameNotifys({
-            title: '炼器提示',
-            message: '炼器成功',
-            position: 'top-left'
-          })
-        } else {
-          // 如果炼器等级等于或大于15级并且未开启炼器保护
-          if (item.strengthen >= 15 && !protect.value) {
-            // 移除销毁当前装备
-            player.value.equipment[item.type] = {}
-            // 扣除已销毁装备增加的属性
-            playerAttribute(-item.dodge, -item.attack, -item.health, -item.critical, -item.defense)
-            // 炼器等级清零
-            item.strengthen = 0
-            // 关闭炼器弹窗
-            strengthenShow.value = false
-          }
-          // 发送炼器失败通知
-          gameNotifys({
-            title: '炼器提示',
-            message: item.strengthen >= 15 && !protect.value ? '炼器失败, 装备已自动销毁' : '炼器失败',
-            position: 'top-left',
-            type: 'error'
-          })
-        }
-        // 扣除炼器石
-        player.value.props.strengtheningStone -= calculate
-      })
-      .catch(() => {})
-  }
-
-  // 计算炼器所需消耗的道具数量
-  const calcEnhanceCost = item => {
-    // 炼器基础消耗
-    let baseCost = item.level * 5
-    // 每级炼器需要增加的消耗
-    let incrementPerLevel = item.strengthen * 50
-    // 是否开启炼器保护
-    // 是否开启炼器增幅
-    // 最终所需消耗道具数量
-    return (baseCost + incrementPerLevel) * (protect.value ? 10 : 1) * (increase.value ? 5 : 1)
-  }
-  // 计算炼器成功概率
-  const calculateEnhanceSuccessRate = item => {
-    // 基础成功率
-    let baseSuccessRate = 1
-    // 每级降低成功率
-    let decrementPerLevel = 0.03
-    // 炼器增幅
-    // 最终成功率
-    return baseSuccessRate - (item.strengthen * decrementPerLevel - (increase.value ? 0.1 : 0))
-  }
-  // 灵宠升级
-  const petUpgrade = item => {
-    // 计算灵宠升级所需材料数量
-    const consume = petConsumption(item.level)
-
-    // 如果勾选了提升悟性但是悟性丹不足
-    if (petRootBone.value && player.value.props.rootBone < item.rootBone) {
-      // 发送通知
-      gameNotifys({
-        title: '灵宠培养提示',
-        message: '悟性丹不足, 无法提升灵宠悟性',
-        position: 'top-left'
-      })
-      return
-    }
-    // 如果勾选了灵宠转生但是人物转生不等于灵宠转生
-    if (petReincarnation.value && player.value.reincarnation < player.value.pet.reincarnation) {
-      // 发送通知
-      gameNotifys({
-        title: '灵宠培养提示',
-        message: '灵宠转生不能高于人物转生',
-        position: 'top-left'
-      })
-      return
-    }
-    // 如果勾选了灵宠转生但是灵宠等级没满
-    if (petReincarnation.value && maxLv > item.level) {
-      // 发送通知
-      gameNotifys({
-        title: '灵宠培养提示',
-        message: '灵宠境界未满无法转生',
-        position: 'top-left'
-      })
-      return
-    }
-    // 如果没有勾选灵宠转生并且境界满了
-    if (!petReincarnation.value && item.level >= maxLv) {
-      // 发送通知
-      gameNotifys({
-        title: '灵宠培养提示',
-        message: '灵宠境界已满请转生',
-        position: 'top-left'
-      })
-      return
-    }
-    // 如果培养丹不足
-    if (consume > player.value.props.cultivateDan) {
-      // 发送通知
-      gameNotifys({
-        title: '灵宠培养提示',
-        message: '培养丹不足, 进行无法培养',
-        position: 'top-left'
-      })
-      return
-    }
-    // 灵宠培养确认弹窗
-    ElMessageBox.confirm('你确定要培养该灵宠吗?', '灵宠培养提示', {
+  // 炼器确认弹窗
+  ElMessageBox.confirm(
+    item.strengthen >= 15 && !protect.value
+      ? `当前装备炼器等级已达到+${item.strengthen}, 如果炼器失败该装备会销毁, 请问还需要炼器吗?`
+      : '你确定要炼器吗?',
+    '炼器提示',
+    {
       cancelButtonText: '我点错了',
       confirmButtonText: '确定以及肯定'
+    }
+  )
+    .then(() => {
+      // 如果炼器成功
+      if (Math.random() <= successRate) {
+        // 攻击
+        const attack = Math.floor(item.initial.attack * 0.2)
+        // 血量
+        const health = Math.floor(item.initial.health * 0.2)
+        // 防御
+        const defense = Math.floor(item.initial.defense * 0.2)
+        switch (item.type) {
+          // 如果是神兵
+          case 'weapon':
+            item.attack += attack
+            playerAttribute(0, attack, 0, 0, 0)
+            break
+          // 如果是防具
+          case 'armor':
+            item.health += health
+            item.defense += defense
+            playerAttribute(0, 0, health, 0, defense)
+            break
+          // 如果是灵宝或法器
+          case 'accessory':
+          case 'sutra':
+            item.attack += attack
+            item.health += health
+            item.defense += defense
+            playerAttribute(0, attack, health, 0, defense)
+            break
+          default:
+            break
+        }
+        // 增加炼器等级
+        item.strengthen++
+        // 重新计算装备评分
+        item.score = equip.calculateEquipmentScore(item.dodge, item.attack, item.health, item.critical, item.defense)
+        // 发送炼器成功通知
+        gameNotifys({
+          title: '炼器提示',
+          message: '炼器成功',
+          position: 'top-left'
+        })
+      } else {
+        // 如果炼器等级等于或大于15级并且未开启炼器保护
+        if (item.strengthen >= 15 && !protect.value) {
+          // 移除销毁当前装备
+          player.value.equipment[item.type] = {}
+          // 扣除已销毁装备增加的属性
+          playerAttribute(-item.dodge, -item.attack, -item.health, -item.critical, -item.defense)
+          // 炼器等级清零
+          item.strengthen = 0
+          // 关闭炼器弹窗
+          strengthenShow.value = false
+        }
+        // 发送炼器失败通知
+        gameNotifys({
+          title: '炼器提示',
+          message: item.strengthen >= 15 && !protect.value ? '炼器失败, 装备已自动销毁' : '炼器失败',
+          position: 'top-left',
+          type: 'error'
+        })
+      }
+      // 扣除炼器石
+      player.value.props.strengtheningStone -= calculate
     })
-      .then(() => {
-        let attack,
-          health,
-          defense = 0
-        // 如果勾选了提升悟性并且悟性丹足够
-        if (petRootBone.value && player.value.props.rootBone >= item.rootBone) {
-          let rootBone = item.initial.rootBone - item.rootBone
-          rootBone = rootBone ? rootBone : 1
-          // 攻击
-          attack = Math.floor(item.initial.attack * rootBone)
-          // 血量
-          health = Math.floor(item.initial.health * rootBone)
-          // 防御
-          defense = Math.floor(item.initial.defense * rootBone)
-          // 提升悟性
-          item.rootBone++
-          // 扣除悟性丹
-          player.value.props.rootBone -= item.rootBone
-        } else {
-          // 攻击
-          attack = Math.floor(item.initial.attack * 0.05)
-          // 血量
-          health = Math.floor(item.initial.health * 0.05)
-          // 防御
-          defense = Math.floor(item.initial.defense * 0.05)
-        }
-        // 如果勾选了转生并且当前等级已满
-        if (petReincarnation.value && item.level >= maxLv) {
-          // 重置灵宠等级
-          player.value.pet.level = 1
-          // 取消转生勾选
-          petReincarnation.value = false
-          // 增加灵宠转生次数
-          player.value.pet.reincarnation++
-          // 发送通知
-          gameNotifys({
-            title: '灵宠培养提示',
-            message: '灵宠转生成功, 已重置灵宠境界',
-            position: 'top-left'
-          })
-        } else {
-          // 增加灵宠等级
-          player.value.pet.level++
-          // 发送通知
-          gameNotifys({
-            title: '灵宠培养提示',
-            message: '灵宠培养成功',
-            position: 'top-left'
-          })
-        }
-        // 增加灵宠属性
-        player.value.pet.attack += attack
-        player.value.pet.health += health
-        player.value.pet.defense += defense
-        // 更新玩家属性，添加灵宠培养后的属性加成
-        playerAttribute(0, attack, health, 0, defense)
-        // 重新计算灵宠评分
-        player.value.pet.score = equip.calculateEquipmentScore(
-          player.value.pet.dodge,
-          player.value.pet.attack,
-          player.value.pet.health,
-          player.value.pet.critical,
-          player.value.pet.defense
-        )
-        // 扣除培养丹
-        player.value.props.cultivateDan -= consume
-      })
-      .catch(() => {})
+    .catch(() => { })
+}
+
+// 计算炼器所需消耗的道具数量
+const calcEnhanceCost = item => {
+  // 炼器基础消耗
+  let baseCost = item.level * 5
+  // 每级炼器需要增加的消耗
+  let incrementPerLevel = item.strengthen * 50
+  // 是否开启炼器保护
+  // 是否开启炼器增幅
+  // 最终所需消耗道具数量
+  return (baseCost + incrementPerLevel) * (protect.value ? 10 : 1) * (increase.value ? 5 : 1)
+}
+// 计算炼器成功概率
+const calculateEnhanceSuccessRate = item => {
+  // 基础成功率
+  let baseSuccessRate = 1
+  // 每级降低成功率
+  let decrementPerLevel = 0.03
+  // 炼器增幅
+  // 最终成功率
+  return baseSuccessRate - (item.strengthen * decrementPerLevel - (increase.value ? 0.1 : 0))
+}
+// 灵宠升级
+const petUpgrade = item => {
+  // 计算灵宠升级所需材料数量
+  const consume = petConsumption(item.level)
+
+  // 如果勾选了提升悟性但是悟性丹不足
+  if (petRootBone.value && player.value.props.rootBone < item.rootBone) {
+    // 发送通知
+    gameNotifys({
+      title: '灵宠培养提示',
+      message: '悟性丹不足, 无法提升灵宠悟性',
+      position: 'top-left'
+    })
+    return
   }
-  // 道侣升级
-  const wifeUpgrade = item => {
-    // 计算道侣升级所需材料数量
-    const consume = item.level * 10
-    // 如果情缘点不足
-    if (consume > player.value.props.qingyuan) {
+  // 如果勾选了灵宠转生但是人物转生不等于灵宠转生
+  if (petReincarnation.value && player.value.reincarnation < player.value.pet.reincarnation) {
+    // 发送通知
+    gameNotifys({
+      title: '灵宠培养提示',
+      message: '灵宠转生不能高于人物转生',
+      position: 'top-left'
+    })
+    return
+  }
+  // 如果勾选了灵宠转生但是灵宠等级没满
+  if (petReincarnation.value && maxLv > item.level) {
+    // 发送通知
+    gameNotifys({
+      title: '灵宠培养提示',
+      message: '灵宠境界未满无法转生',
+      position: 'top-left'
+    })
+    return
+  }
+  // 如果没有勾选灵宠转生并且境界满了
+  if (!petReincarnation.value && item.level >= maxLv) {
+    // 发送通知
+    gameNotifys({
+      title: '灵宠培养提示',
+      message: '灵宠境界已满请转生',
+      position: 'top-left'
+    })
+    return
+  }
+  // 如果培养丹不足
+  if (consume > player.value.props.cultivateDan) {
+    // 发送通知
+    gameNotifys({
+      title: '灵宠培养提示',
+      message: '培养丹不足, 进行无法培养',
+      position: 'top-left'
+    })
+    return
+  }
+  // 灵宠培养确认弹窗
+  ElMessageBox.confirm('你确定要培养该灵宠吗?', '灵宠培养提示', {
+    cancelButtonText: '我点错了',
+    confirmButtonText: '确定以及肯定'
+  })
+    .then(() => {
+      let attack,
+        health,
+        defense = 0
+      // 如果勾选了提升悟性并且悟性丹足够
+      if (petRootBone.value && player.value.props.rootBone >= item.rootBone) {
+        let rootBone = item.initial.rootBone - item.rootBone
+        rootBone = rootBone ? rootBone : 1
+        // 攻击
+        attack = Math.floor(item.initial.attack * rootBone)
+        // 血量
+        health = Math.floor(item.initial.health * rootBone)
+        // 防御
+        defense = Math.floor(item.initial.defense * rootBone)
+        // 提升悟性
+        item.rootBone++
+        // 扣除悟性丹
+        player.value.props.rootBone -= item.rootBone
+      } else {
+        // 攻击
+        attack = Math.floor(item.initial.attack * 0.05)
+        // 血量
+        health = Math.floor(item.initial.health * 0.05)
+        // 防御
+        defense = Math.floor(item.initial.defense * 0.05)
+      }
+      // 如果勾选了转生并且当前等级已满
+      if (petReincarnation.value && item.level >= maxLv) {
+        // 重置灵宠等级
+        player.value.pet.level = 1
+        // 取消转生勾选
+        petReincarnation.value = false
+        // 增加灵宠转生次数
+        player.value.pet.reincarnation++
+        // 发送通知
+        gameNotifys({
+          title: '灵宠培养提示',
+          message: '灵宠转生成功, 已重置灵宠境界',
+          position: 'top-left'
+        })
+      } else {
+        // 增加灵宠等级
+        player.value.pet.level++
+        // 发送通知
+        gameNotifys({
+          title: '灵宠培养提示',
+          message: '灵宠培养成功',
+          position: 'top-left'
+        })
+      }
+      // 增加灵宠属性
+      player.value.pet.attack += attack
+      player.value.pet.health += health
+      player.value.pet.defense += defense
+      // 更新玩家属性，添加灵宠培养后的属性加成
+      playerAttribute(0, attack, health, 0, defense)
+      // 重新计算灵宠评分
+      player.value.pet.score = equip.calculateEquipmentScore(
+        player.value.pet.dodge,
+        player.value.pet.attack,
+        player.value.pet.health,
+        player.value.pet.critical,
+        player.value.pet.defense
+      )
+      // 扣除培养丹
+      player.value.props.cultivateDan -= consume
+    })
+    .catch(() => { })
+}
+// 道侣升级
+const wifeUpgrade = item => {
+  // 计算道侣升级所需材料数量
+  const consume = item.level * 10
+  // 如果情缘点不足
+  if (consume > player.value.props.qingyuan) {
+    // 发送通知
+    gameNotifys({
+      title: '道侣升级提示',
+      message: '情缘点不足, 进行无法培养',
+      position: 'top-left'
+    })
+    return
+  }
+  // 道侣升级确认弹窗
+  ElMessageBox.confirm('你确定要升级该道侣吗?', '道侣升级提示', {
+    cancelButtonText: '我点错了',
+    confirmButtonText: '确定以及肯定'
+  })
+    .then(() => {
+      const attack = Math.floor(item.attack * 0.1)
+      const health = Math.floor(item.health * 0.1)
+      const defense = Math.floor(item.defense * 0.1)
+      // 增加道侣等级
+      player.value.wife.level++
       // 发送通知
       gameNotifys({
         title: '道侣升级提示',
-        message: '情缘点不足, 进行无法培养',
+        message: '道侣升级提示成功',
         position: 'top-left'
       })
-      return
-    }
-    // 道侣升级确认弹窗
-    ElMessageBox.confirm('你确定要升级该道侣吗?', '道侣升级提示', {
-      cancelButtonText: '我点错了',
-      confirmButtonText: '确定以及肯定'
+      // 增加道侣属性
+      player.value.wife.attack += attack
+      player.value.wife.health += health
+      player.value.wife.defense += defense
+      // 更新玩家属性，添加道侣升级后的属性加成
+      playerAttribute(0, attack, health, 0, defense)
+      // 扣除情缘点
+      player.value.props.qingyuan -= consume
     })
-      .then(() => {
-        const attack = Math.floor(item.attack * 0.1)
-        const health = Math.floor(item.health * 0.1)
-        const defense = Math.floor(item.defense * 0.1)
-        // 增加道侣等级
-        player.value.wife.level++
-        // 发送通知
-        gameNotifys({
-          title: '道侣升级提示',
-          message: '道侣升级提示成功',
-          position: 'top-left'
-        })
-        // 增加道侣属性
-        player.value.wife.attack += attack
-        player.value.wife.health += health
-        player.value.wife.defense += defense
-        // 更新玩家属性，添加道侣升级后的属性加成
-        playerAttribute(0, attack, health, 0, defense)
-        // 扣除情缘点
-        player.value.props.qingyuan -= consume
-      })
-      .catch(() => {})
-  }
+    .catch(() => { })
+}
 
-  // 计算灵宠升级所需消耗
-  const petConsumption = lv => {
-    // 是否勾选转生选项
-    const cost = petReincarnation.value ? 10 : 1
-    // 转生次数
-    const reincarnation = player.value.pet.reincarnation ? lv * 200 : 1
-    return (lv * 200 + reincarnation) * cost
-  }
+// 计算灵宠升级所需消耗
+const petConsumption = lv => {
+  // 是否勾选转生选项
+  const cost = petReincarnation.value ? 10 : 1
+  // 转生次数
+  const reincarnation = player.value.pet.reincarnation ? lv * 200 : 1
+  return (lv * 200 + reincarnation) * cost
+}
 
-  // 购买装备
-  const shopBuy = item => {
-    if (player.value.props.currency >= shopPrice.value) {
-      // 扣除鸿蒙石
-      player.value.props.currency -= shopPrice.value
-      // 如果装备背包当前容量大于等于背包总容量
-      if (player.value.inventory.length >= player.value.backpackCapacity)
-        storyText.value = `当前装备背包容量已满, 该装备自动丢弃, 转生可增加背包容量`
-      // 添加到背包
-      else player.value.inventory.push(item)
-      // 跳转背包相关页
-      inventoryActive.value = 'equipment'
-      equipmentActive.value = item.type
-      gameNotifys({
-        title: '购买提示',
-        message: `您成功花费${shopPrice.value}鸿蒙石购买${item.name}`
-      })
-    } else {
-      gameNotifys({ title: '购买提示', message: '购买失败, 鸿蒙石不足' })
-    }
+// 购买装备
+const shopBuy = item => {
+  if (player.value.props.currency >= shopPrice.value) {
+    // 扣除鸿蒙石
+    player.value.props.currency -= shopPrice.value
+    // 如果装备背包当前容量大于等于背包总容量
+    if (player.value.inventory.length >= player.value.backpackCapacity)
+      storyText.value = `当前装备背包容量已满, 该装备自动丢弃, 转生可增加背包容量`
+    // 添加到背包
+    else player.value.inventory.push(item)
+    // 跳转背包相关页
+    inventoryActive.value = 'equipment'
+    equipmentActive.value = item.type
+    gameNotifys({
+      title: '购买提示',
+      message: `您成功花费${shopPrice.value}鸿蒙石购买${item.name}`
+    })
+  } else {
+    gameNotifys({ title: '购买提示', message: '购买失败, 鸿蒙石不足' })
   }
-  // 道侣跟随
-  const wifeTack = item => {
-    // 如果已经有道侣跟随就收回
-    if (JSON.stringify(player.value.wife) != '{}') {
-      const itemInfo = player.value.wife
-      // 更新玩家属性，移除跟随道侣的属性加成
-      playerAttribute(-itemInfo.dodge, -itemInfo.attack, -itemInfo.health, -itemInfo.critical, -itemInfo.defense)
-      // 收回当前跟随的道侣
-      player.value.wifes.push(player.value.wife)
-    }
-    player.value.wife = item
-    // 更新玩家属性，添加当前跟随道侣的属性加成
-    playerAttribute(item.dodge, item.attack, item.health, item.critical, item.defense)
-    // 从道侣背包中移除这个道侣
-    player.value.wifes = player.value.wifes.filter(i => i.name !== item.name)
-  }
-  // 道侣收回
-  const wifeRevoke = () => {
-    const item = player.value.wife
-    // 更新玩家属性，移除当前跟随道侣的属性加成
-    playerAttribute(-item.dodge, -item.attack, -item.health, -item.critical, -item.defense)
+}
+// 道侣跟随
+const wifeTack = item => {
+  // 如果已经有道侣跟随就收回
+  if (JSON.stringify(player.value.wife) != '{}') {
+    const itemInfo = player.value.wife
+    // 更新玩家属性，移除跟随道侣的属性加成
+    playerAttribute(-itemInfo.dodge, -itemInfo.attack, -itemInfo.health, -itemInfo.critical, -itemInfo.defense)
     // 收回当前跟随的道侣
-    player.value.wife = {}
-    player.value.wifes.push(item)
+    player.value.wifes.push(player.value.wife)
   }
-  // 道侣信息
-  const wifeItemInfo = item => {
-    ElMessageBox.confirm('', item.name, {
-      center: true,
-      message: `<div class="monsterinfo">
+  player.value.wife = item
+  // 更新玩家属性，添加当前跟随道侣的属性加成
+  playerAttribute(item.dodge, item.attack, item.health, item.critical, item.defense)
+  // 从道侣背包中移除这个道侣
+  player.value.wifes = player.value.wifes.filter(i => i.name !== item.name)
+}
+// 道侣收回
+const wifeRevoke = () => {
+  const item = player.value.wife
+  // 更新玩家属性，移除当前跟随道侣的属性加成
+  playerAttribute(-item.dodge, -item.attack, -item.health, -item.critical, -item.defense)
+  // 收回当前跟随的道侣
+  player.value.wife = {}
+  player.value.wifes.push(item)
+}
+// 道侣信息
+const wifeItemInfo = item => {
+  ElMessageBox.confirm('', item.name, {
+    center: true,
+    message: `<div class="monsterinfo">
       <div class="monsterinfo-box">
       <p>境界: ${levelNames(item.level)}</p>
       <p>气血: ${formatNumberToChineseUnit(item.health)}</p>
@@ -2005,19 +1998,19 @@
       <p>防御: ${formatNumberToChineseUnit(item.defense)}</p>
       </div>
     </div>`,
-      confirmButtonText: '跟随',
-      dangerouslyUseHTMLString: true
+    confirmButtonText: '跟随',
+    dangerouslyUseHTMLString: true
+  })
+    .then(() => {
+      wifeTack(item)
     })
-      .then(() => {
-        wifeTack(item)
-      })
-      .catch(() => {})
-  }
-  // 商店装备信息
-  const shopItemInfo = item => {
-    ElMessageBox.confirm('', item.name, {
-      center: true,
-      message: `<div class="monsterinfo">
+    .catch(() => { })
+}
+// 商店装备信息
+const shopItemInfo = item => {
+  ElMessageBox.confirm('', item.name, {
+    center: true,
+    message: `<div class="monsterinfo">
       <div class="monsterinfo-box">
       <p>价格: ${shopPrice.value}鸿蒙石</p>
       <p>类型: ${genre[item.type]}</p>
@@ -2031,423 +2024,422 @@
       <p>装备评分: ${formatNumberToChineseUnit(item.score)}</p>
       </div>
     </div>`,
-      cancelButtonText: '取消购买',
-      confirmButtonText: '购买装备',
-      dangerouslyUseHTMLString: true
+    cancelButtonText: '取消购买',
+    confirmButtonText: '购买装备',
+    dangerouslyUseHTMLString: true
+  })
+    .then(() => {
+      shopBuy(item)
     })
-      .then(() => {
-        shopBuy(item)
-      })
-      .catch(() => {})
+    .catch(() => { })
+}
+// 赠送新手礼包
+const newbiePack = timesLeft => {
+  // 如果没有领取新手礼包
+  if (player.value.isNewbie) {
+    gameNotifys({ title: '提示', message: '新手礼包无法重复领取' })
+    return
   }
+  newBieBox.value = true
+  // 初始化物品
+  let equipItem = {}
+  // 神兵
+  if (timesLeft == 4) equipItem = equip.equip_Weapons(10, false)
+  // 护甲
+  else if (timesLeft == 3) equipItem = equip.equip_Armors(10, false)
+  // 灵宝
+  else if (timesLeft == 2) equipItem = equip.equip_Accessorys(10, false)
+  // 法器
+  else if (timesLeft == 1) equipItem = equip.equip_Sutras(10, false)
+  // 修改刷新按钮加载状态
+  else if (timesLeft == 0) newBieLoading.value = false
+  // 终止
+  else return
+  // 将装备添加到库存
+  if (JSON.stringify(equipItem) != '{}') newBieData.value.push(equipItem)
+  // 更新剩余次数
+  timesLeft--
+  // 设置延时以便下一次调用
+  setTimeout(() => {
+    newbiePack(timesLeft)
+  }, 100)
+}
+
+// 刷新新手礼包
+const refreshNewBie = () => {
+  // 初始化数据
+  newBieData.value = []
+  // 修改刷新按钮加载状态
+  newBieLoading.value = true
   // 赠送新手礼包
-  const newbiePack = timesLeft => {
-    // 如果没有领取新手礼包
-    if (player.value.isNewbie) {
-      gameNotifys({ title: '提示', message: '新手礼包无法重复领取' })
-      return
-    }
-    newBieBox.value = true
-    // 初始化物品
-    let equipItem = {}
-    // 神兵
-    if (timesLeft == 4) equipItem = equip.equip_Weapons(10, false)
-    // 护甲
-    else if (timesLeft == 3) equipItem = equip.equip_Armors(10, false)
-    // 灵宝
-    else if (timesLeft == 2) equipItem = equip.equip_Accessorys(10, false)
-    // 法器
-    else if (timesLeft == 1) equipItem = equip.equip_Sutras(10, false)
-    // 修改刷新按钮加载状态
-    else if (timesLeft == 0) newBieLoading.value = false
-    // 终止
-    else return
-    // 将装备添加到库存
-    if (JSON.stringify(equipItem) != '{}') newBieData.value.push(equipItem)
-    // 更新剩余次数
-    timesLeft--
-    // 设置延时以便下一次调用
-    setTimeout(() => {
-      newbiePack(timesLeft)
-    }, 100)
-  }
+  newbiePack(4)
+}
 
-  // 刷新新手礼包
-  const refreshNewBie = () => {
-    // 初始化数据
-    newBieData.value = []
-    // 修改刷新按钮加载状态
-    newBieLoading.value = true
-    // 赠送新手礼包
-    newbiePack(4)
-  }
+// 新手礼包装备信息
+const newBieInfo = item => {
+  newBieItem.value = item
+  newBieInfoBox.value = true
+}
 
-  // 新手礼包装备信息
-  const newBieInfo = item => {
-    newBieItem.value = item
-    newBieInfoBox.value = true
-  }
-
-  // 确定领取新手礼包
-  const confirmCollectionNewBie = () => {
-    ElMessageBox.confirm('你确定已经获得到了自己满意的装备了吗?', '提示', {
-      center: true,
-      cancelButtonText: '不确定',
-      confirmButtonText: '确定',
-      dangerouslyUseHTMLString: true
-    })
-      .then(() => {
-        // 关闭弹窗
-        newBieBox.value = false
-        // 更新玩家装备
-        player.value.inventory = newBieData.value
-        // 清空
-        newBieData.value = []
-        // 修改礼包领取状态
-        player.value.isNewbie = true
-        gameNotifys({
-          title: '新手礼包领取提示',
-          message: '新手礼包领取成功!'
-        })
-      })
-      .catch(() => {})
-  }
-  // 分解装备
-  const inventoryClose = item => {
-    ElMessageBox.confirm(
-      `你确定要分解<span class="el-tag el-tag--${item.quality}">${levels[item.quality]}${item.name}(${
-        genre[item.type]
-      })</span>吗?`,
-      '装备分解通知',
-      {
-        center: true,
-        cancelButtonText: '取消分解',
-        confirmButtonText: '确定分解',
-        dangerouslyUseHTMLString: true
-      }
-    )
-      .then(() => {
-        const num = item.level + Math.floor((item.level * player.value.reincarnation) / 10)
-        // 增加炼器石数量
-        player.value.props.strengtheningStone += num
-        // 删除背包装备
-        player.value.inventory = player.value.inventory.filter(obj => obj.id !== item.id)
-        // 关闭装备信息弹窗
-        inventoryShow.value = false
-        // 装备分解通知
-        gameNotifys({
-          title: '背包装备售卖提示',
-          message: `${item.name}已成功卖出, 你获得了${num}个炼器石`
-        })
-      })
-      .catch(() => {})
-  }
-  // 根据装备ID给出信息
-  const getObjectById = (id, arr) => {
-    return arr.find(obj => obj.id === id)
-  }
-  // 道具信息
-  const inventory = id => {
-    inventoryInfo.value = getObjectById(id, player.value.inventory)
-    inventoryShow.value = true
-  }
-  // 灵宠信息
-  const petItemInfo = item => {
-    petShow.value = true
-    petInfo.value = item
-  }
-  // 灵宠收回
-  const petRetract = () => {
-    const item = player.value.pet
-    if (JSON.stringify(item) == '{}') return
-    // 更新玩家属性，移除当前出战灵宠的属性加成
-    playerAttribute(-item.dodge, -item.attack, -item.health, -item.critical, -item.defense)
-    // 跳转背包相关页
-    inventoryActive.value = 'pet'
-    // 添加灵宠到灵宠背包里
-    player.value.pets.push(item)
-    // 收回当前出战的灵宠
-    player.value.pet = {}
-  }
-
-  // 计算灵宠等级
-  const computePetsLevel = lv => {
-    if (lv >= 1 && lv <= 9) return 'success'
-    if (lv >= 10 && lv <= 19) return 'primary'
-    if (lv >= 20 && lv <= 29) return 'warning'
-    if (lv >= 30) return 'danger'
-  }
-
-  // 玩家属性操作
-  const playerAttribute = (dodge = 0, attack = 0, health = 0, critical = 0, defense = 0) => {
-    // 初始化传进来的属性值
-    dodge = isNaN(dodge) || !dodge ? 0 : parseFloat(dodge)
-    attack = isNaN(attack) || !attack ? 0 : Math.floor(attack)
-    health = isNaN(health) || !health ? 0 : Math.floor(health)
-    defense = isNaN(defense) || !defense ? 0 : Math.floor(defense)
-    critical = isNaN(critical) || !critical ? 0 : parseFloat(critical)
-    // 闪避
-    player.value.dodge = player.value.dodge + dodge
-    // 攻击
-    player.value.attack = player.value.attack + attack
-    // 血量
-    player.value.health = player.value.health + health
-    player.value.maxHealth = player.value.maxHealth + health
-    // 暴击
-    player.value.critical = player.value.critical + critical
-    // 防御
-    player.value.defense = player.value.defense + defense
-    // 评分
-    player.value.score = equip.calculateEquipmentScore(
-      player.value.dodge,
-      player.value.attack,
-      player.value.maxHealth,
-      player.value.critical,
-      player.value.defense
-    )
-  }
-  // 卸装备
-  const equipmentClose = type => {
-    const { inventory, equipment } = player.value
-    if (!equipment[type]) return
-    // 更新玩家属性，移除当前穿戴装备的属性加成
-    playerAttribute(
-      -equipment[type].dodge,
-      -equipment[type].attack,
-      -equipment[type].health,
-      -equipment[type].critical,
-      -equipment[type].defense
-    )
-    // 跳转背包相关页
-    equipmentActive.value = type
-    // id不存在的情况下，给装备添加id
-    if (!equipment[type].id) {
-      equipment[type].id = Date.now()
-    }
-    
-    // 添加装备到背包里
-    inventory.push(equipment[type])
-    // 清空身上当前类型的装备
-    equipment[type] = {}
-  }
-
-  //获取角色当前装备
-  const getEquipmentInfo = (id, type) => {
-    if (!id || !type) return
-    const equipment = getObjectById(id, player.value.inventory.concat(player.value.equipment[type]))
-    if (!equipment) return
-    // 需要炼器的装备信息
-    strengthenInfo.value = equipment
-    // 炼器等级
-    if (player.value.equipment[type]) {
-      player.value.equipment[type].strengthen = equipment?.strengthen ? equipment?.strengthen : 0
-    }
-  }
-
-  // 装备信息
-  const equipmentInfo = (id, type) => {
-    if (id) {
-      // 打开炼器弹窗
-      strengthenShow.value = true
-      getEquipmentInfo(id, type)
-    }
-  }
-
-  // 装备排序
-  const equipmentDropdown = command => {
-    equipmentDropdownActive.value = command
-    player.value.inventory = player.value.inventory.slice().sort((a, b) => b[command] - a[command])
-  }
-  // 灵宠排序
-  const petDropdown = command => {
-    petDropdownActive.value = command
-    player.value.pets = player.value.pets.slice().sort((a, b) => b[command] - a[command])
-  }
-
-  // 属性加点
-  const attributePoints = type => {
-    const typeNames = {
-      attack: '攻击',
-      health: '气血',
-      defense: '防御'
-    }
-    if (player.value.points > 0) {
-      const num = player.value.reincarnation ? player.value.reincarnation * 10 : 1
-      const numText = type == 'attack' || type == 'defense' ? 50 * num : 100 * num
-      // 如果是攻击
-      if (type == 'attack') playerAttribute(0, numText, 0, 0, 0)
-      // 如果是防御
-      else if (type == 'defense') playerAttribute(0, 0, 0, 0, numText)
-      // 如果是血量
-      else if (type == 'health') playerAttribute(0, 0, numText, 0, 0)
-      // 扣除点数
-      player.value.points--
+// 确定领取新手礼包
+const confirmCollectionNewBie = () => {
+  ElMessageBox.confirm('你确定已经获得到了自己满意的装备了吗?', '提示', {
+    center: true,
+    cancelButtonText: '不确定',
+    confirmButtonText: '确定',
+    dangerouslyUseHTMLString: true
+  })
+    .then(() => {
+      // 关闭弹窗
+      newBieBox.value = false
+      // 更新玩家装备
+      player.value.inventory = newBieData.value
+      // 清空
+      newBieData.value = []
+      // 修改礼包领取状态
+      player.value.isNewbie = true
       gameNotifys({
-        title: '加点提示',
-        message: `加点成功${typeNames[type]}增加了${numText}点`
+        title: '新手礼包领取提示',
+        message: '新手礼包领取成功!'
       })
+    })
+    .catch(() => { })
+}
+// 分解装备
+const inventoryClose = item => {
+  ElMessageBox.confirm(
+    `你确定要分解<span class="el-tag el-tag--${item.quality}">${levels[item.quality]}${item.name}(${genre[item.type]
+    })</span>吗?`,
+    '装备分解通知',
+    {
+      center: true,
+      cancelButtonText: '取消分解',
+      confirmButtonText: '确定分解',
+      dangerouslyUseHTMLString: true
     }
+  )
+    .then(() => {
+      const num = item.level + Math.floor((item.level * player.value.reincarnation) / 10)
+      // 增加炼器石数量
+      player.value.props.strengtheningStone += num
+      // 删除背包装备
+      player.value.inventory = player.value.inventory.filter(obj => obj.id !== item.id)
+      // 关闭装备信息弹窗
+      inventoryShow.value = false
+      // 装备分解通知
+      gameNotifys({
+        title: '背包装备售卖提示',
+        message: `${item.name}已成功卖出, 你获得了${num}个炼器石`
+      })
+    })
+    .catch(() => { })
+}
+// 根据装备ID给出信息
+const getObjectById = (id, arr) => {
+  return arr.find(obj => obj.id === id)
+}
+// 道具信息
+const inventory = id => {
+  inventoryInfo.value = getObjectById(id, player.value.inventory)
+  inventoryShow.value = true
+}
+// 灵宠信息
+const petItemInfo = item => {
+  petShow.value = true
+  petInfo.value = item
+}
+// 灵宠收回
+const petRetract = () => {
+  const item = player.value.pet
+  if (JSON.stringify(item) == '{}') return
+  // 更新玩家属性，移除当前出战灵宠的属性加成
+  playerAttribute(-item.dodge, -item.attack, -item.health, -item.critical, -item.defense)
+  // 跳转背包相关页
+  inventoryActive.value = 'pet'
+  // 添加灵宠到灵宠背包里
+  player.value.pets.push(item)
+  // 收回当前出战的灵宠
+  player.value.pet = {}
+}
+
+// 计算灵宠等级
+const computePetsLevel = lv => {
+  if (lv >= 1 && lv <= 9) return 'success'
+  if (lv >= 10 && lv <= 19) return 'primary'
+  if (lv >= 20 && lv <= 29) return 'warning'
+  if (lv >= 30) return 'danger'
+}
+
+// 玩家属性操作
+const playerAttribute = (dodge = 0, attack = 0, health = 0, critical = 0, defense = 0) => {
+  // 初始化传进来的属性值
+  dodge = isNaN(dodge) || !dodge ? 0 : parseFloat(dodge)
+  attack = isNaN(attack) || !attack ? 0 : Math.floor(attack)
+  health = isNaN(health) || !health ? 0 : Math.floor(health)
+  defense = isNaN(defense) || !defense ? 0 : Math.floor(defense)
+  critical = isNaN(critical) || !critical ? 0 : parseFloat(critical)
+  // 闪避
+  player.value.dodge = player.value.dodge + dodge
+  // 攻击
+  player.value.attack = player.value.attack + attack
+  // 血量
+  player.value.health = player.value.health + health
+  player.value.maxHealth = player.value.maxHealth + health
+  // 暴击
+  player.value.critical = player.value.critical + critical
+  // 防御
+  player.value.defense = player.value.defense + defense
+  // 评分
+  player.value.score = equip.calculateEquipmentScore(
+    player.value.dodge,
+    player.value.attack,
+    player.value.maxHealth,
+    player.value.critical,
+    player.value.defense
+  )
+}
+// 卸装备
+const equipmentClose = type => {
+  const { inventory, equipment } = player.value
+  if (!equipment[type]) return
+  // 更新玩家属性，移除当前穿戴装备的属性加成
+  playerAttribute(
+    -equipment[type].dodge,
+    -equipment[type].attack,
+    -equipment[type].health,
+    -equipment[type].critical,
+    -equipment[type].defense
+  )
+  // 跳转背包相关页
+  equipmentActive.value = type
+  // id不存在的情况下，给装备添加id
+  if (!equipment[type].id) {
+    equipment[type].id = Date.now()
   }
-  // 计算所需修为相差百分比
-  const calculatePercentageDifference = (num1, num2) => {
-    let difference = Math.abs(num1 - num2)
-    let percentage = (difference / num1) * 100
-    const num3 = player.value.maxCultivation - player.value.cultivation > 0 ? 100 - percentage : 100
-    // return percentage < 0 ? 100 : 100 - percentage;
-    return `${num3.toFixed(2)}%`
+
+  // 添加装备到背包里
+  inventory.push(equipment[type])
+  // 清空身上当前类型的装备
+  equipment[type] = {}
+}
+
+//获取角色当前装备
+const getEquipmentInfo = (id, type) => {
+  if (!id || !type) return
+  const equipment = getObjectById(id, player.value.inventory.concat(player.value.equipment[type]))
+  if (!equipment) return
+  // 需要炼器的装备信息
+  strengthenInfo.value = equipment
+  // 炼器等级
+  if (player.value.equipment[type]) {
+    player.value.equipment[type].strengthen = equipment?.strengthen ? equipment?.strengthen : 0
   }
-  const copyContent = type => {
-    const content = type == 'qq' ? '920930589' : 'https://github.com/setube/vue-XiuXianGame'
-    ElMessageBox.prompt('', type == 'qq' ? '官方群聊' : '开源地址', {
-      inputValue: content,
-      showCancelButton: false,
-      confirmButtonText: '复制',
-      beforeClose: async (action, instance, done) => {
-        if (action === 'confirm') {
-          if (window.navigator.clipboard) {
-            try {
-              await window.navigator.clipboard.writeText(content)
-              done()
-              // 关闭弹窗
-              show.value = false
-              gameNotifys({ title: '提示', message: '复制成功' })
-            } catch (err) {
-              gameNotifys({
-                title: '提示',
-                message: '复制失败, 请手动复制'
-              })
-            }
+}
+
+// 装备信息
+const equipmentInfo = (id, type) => {
+  if (id) {
+    // 打开炼器弹窗
+    strengthenShow.value = true
+    getEquipmentInfo(id, type)
+  }
+}
+
+// 装备排序
+const equipmentDropdown = command => {
+  equipmentDropdownActive.value = command
+  player.value.inventory = player.value.inventory.slice().sort((a, b) => b[command] - a[command])
+}
+// 灵宠排序
+const petDropdown = command => {
+  petDropdownActive.value = command
+  player.value.pets = player.value.pets.slice().sort((a, b) => b[command] - a[command])
+}
+
+// 属性加点
+const attributePoints = type => {
+  const typeNames = {
+    attack: '攻击',
+    health: '气血',
+    defense: '防御'
+  }
+  if (player.value.points > 0) {
+    const num = player.value.reincarnation ? player.value.reincarnation * 10 : 1
+    const numText = type == 'attack' || type == 'defense' ? 50 * num : 100 * num
+    // 如果是攻击
+    if (type == 'attack') playerAttribute(0, numText, 0, 0, 0)
+    // 如果是防御
+    else if (type == 'defense') playerAttribute(0, 0, 0, 0, numText)
+    // 如果是血量
+    else if (type == 'health') playerAttribute(0, 0, numText, 0, 0)
+    // 扣除点数
+    player.value.points--
+    gameNotifys({
+      title: '加点提示',
+      message: `加点成功${typeNames[type]}增加了${numText}点`
+    })
+  }
+}
+// 计算所需修为相差百分比
+const calculatePercentageDifference = (num1, num2) => {
+  let difference = Math.abs(num1 - num2)
+  let percentage = (difference / num1) * 100
+  const num3 = player.value.maxCultivation - player.value.cultivation > 0 ? 100 - percentage : 100
+  // return percentage < 0 ? 100 : 100 - percentage;
+  return `${num3.toFixed(2)}%`
+}
+const copyContent = type => {
+  const content = type == 'qq' ? '920930589' : 'https://github.com/setube/vue-XiuXianGame'
+  ElMessageBox.prompt('', type == 'qq' ? '官方群聊' : '开源地址', {
+    inputValue: content,
+    showCancelButton: false,
+    confirmButtonText: '复制',
+    beforeClose: async (action, instance, done) => {
+      if (action === 'confirm') {
+        if (window.navigator.clipboard) {
+          try {
+            await window.navigator.clipboard.writeText(content)
+            done()
+            // 关闭弹窗
+            show.value = false
+            gameNotifys({ title: '提示', message: '复制成功' })
+          } catch (err) {
+            gameNotifys({
+              title: '提示',
+              message: '复制失败, 请手动复制'
+            })
           }
-        } else {
-          done()
         }
+      } else {
+        done()
       }
-    }).catch(() => {})
-  }
+    }
+  }).catch(() => { })
+}
 
-  const getTagClass = (type, index) => {
-    const achievements1 = player.value.achievement[type] || []
-    return Array.isArray(achievements1) && achievements1.some(ach => ach.id === index)
-  }
+const getTagClass = (type, index) => {
+  const achievements1 = player.value.achievement[type] || []
+  return Array.isArray(achievements1) && achievements1.some(ach => ach.id === index)
+}
 
-  // 成就详细
-  const achievementInfo = (type, item) => {
-    let message = ''
-    if (
-      item.condition.health ||
-      item.condition.attack ||
-      item.condition.defense ||
-      item.condition.dodge ||
-      item.condition.critical
-    ) {
-      message = `
+// 成就详细
+const achievementInfo = (type, item) => {
+  let message = ''
+  if (
+    item.condition.health ||
+    item.condition.attack ||
+    item.condition.defense ||
+    item.condition.dodge ||
+    item.condition.critical
+  ) {
+    message = `
     <p>气血: ${item.condition.health || '无要求'}</p>
     <p>攻击: ${item.condition.attack || '无要求'}</p>
     <p>防御: ${item.condition.defense || '无要求'}</p>
     <p>闪避率: ${item.condition.dodge ? (item.condition.dodge * 100).toFixed(2) + '%' : '无要求'}</p>
     <p>暴击率: ${item.condition.critical ? (item.condition.critical * 100).toFixed(2) + '%' : '无要求'}</p>`
-    } else if (item.condition.level) {
-      message = `<p>达到等级: ${item.condition.level}</p>`
-    } else if (item.condition.monstersDefeated) {
-      message = `<p>击败怪物数量: ${item.condition.monstersDefeated}</p>`
-    } else if (item.condition.money) {
-      message = `<p>累积灵石: ${formatNumberToChineseUnit(item.condition.money)}</p>`
-    }
-    if (item.desc) {
-      message += `<p>描述: ${item.desc}</p>`
-    }
-    message += `<p>完成奖励: ${item.award}培养丹</p>`
-    message += `<p>称号加成: ${formatTitleBonus(item.titleBonus)}</p>`
-    const isCompleted = getTagClass(type, item.id)
-    const isWearing = player.value.currentTitle === item.name
-    ElMessageBox.confirm('', `${item.name}`, {
-      center: true,
-      message: `<div class="monsterinfo"><div class="monsterinfo-box">${message}</div></div>`,
-      cancelButtonText: '关闭',
-      showCancelButton: isCompleted,
-      confirmButtonText: isCompleted ? (isWearing ? '取消佩戴' : '佩戴称号') : '知道了',
-      dangerouslyUseHTMLString: true
+  } else if (item.condition.level) {
+    message = `<p>达到等级: ${item.condition.level}</p>`
+  } else if (item.condition.monstersDefeated) {
+    message = `<p>击败怪物数量: ${item.condition.monstersDefeated}</p>`
+  } else if (item.condition.money) {
+    message = `<p>累积灵石: ${formatNumberToChineseUnit(item.condition.money)}</p>`
+  }
+  if (item.desc) {
+    message += `<p>描述: ${item.desc}</p>`
+  }
+  message += `<p>完成奖励: ${item.award}培养丹</p>`
+  message += `<p>称号加成: ${formatTitleBonus(item.titleBonus)}</p>`
+  const isCompleted = getTagClass(type, item.id)
+  const isWearing = player.value.currentTitle === item.name
+  ElMessageBox.confirm('', `${item.name}`, {
+    center: true,
+    message: `<div class="monsterinfo"><div class="monsterinfo-box">${message}</div></div>`,
+    cancelButtonText: '关闭',
+    showCancelButton: isCompleted,
+    confirmButtonText: isCompleted ? (isWearing ? '取消佩戴' : '佩戴称号') : '知道了',
+    dangerouslyUseHTMLString: true
+  })
+    .then(() => {
+      if (isCompleted) toggleTitle(item)
     })
-      .then(() => {
-        if (isCompleted) toggleTitle(item)
-      })
-      .catch(() => {})
-  }
+    .catch(() => { })
+}
 
-  // 新增方法
-  const formatTitleBonus = bonus => {
-    return Object.entries(bonus)
-      .map(([key, value]) => {
-        const num = value > 1 ? value : `${value * 100}%`
-        return `${dropdownTypeObject[key]}+${num}`
-      })
-      .join(', ')
-  }
-
-  const toggleTitle = achievement => {
-    if (player.value.currentTitle === achievement.name) {
-      // 取消佩戴称号
-      applyTitleBonus(achievement.titleBonus, false)
-      player.value.currentTitle = null
-      gameNotifys({
-        title: '称号系统',
-        message: `你取消佩戴了称号"${achievement.name}"`
-      })
-    } else {
-      // 佩戴新称号
-      if (player.value.currentTitle) {
-        // 如果已经佩戴了称号，先移除旧称号的加成
-        const oldAchievement = findAchievementByTitle(player.value.currentTitle)
-        if (oldAchievement) applyTitleBonus(oldAchievement.titleBonus, false)
-      }
-      applyTitleBonus(achievement.titleBonus, true)
-      player.value.currentTitle = achievement.name
-      gameNotifys({
-        title: '称号系统',
-        message: `你佩戴了称号"${achievement.name}"`
-      })
-    }
-  }
-
-  const applyTitleBonus = (bonus, isApplying) => {
-    const multiplier = isApplying ? 1 : -1
-    let dodge = 0,
-      attack = 0,
-      health = 0,
-      critical = 0,
-      defense = 0
-    Object.entries(bonus).forEach(([key, value]) => {
-      switch (key) {
-        case 'dodge':
-          dodge += value * multiplier
-          break
-        case 'attack':
-          attack += value * multiplier
-          break
-        case 'health':
-          health += value * multiplier
-          break
-        case 'critical':
-          critical += value * multiplier
-          break
-        case 'defense':
-          defense += value * multiplier
-          break
-        default:
-      }
+// 新增方法
+const formatTitleBonus = bonus => {
+  return Object.entries(bonus)
+    .map(([key, value]) => {
+      const num = value > 1 ? value : `${value * 100}%`
+      return `${dropdownTypeObject[key]}+${num}`
     })
-    playerAttribute(dodge, attack, health, critical, defense)
-  }
-  const findAchievementByTitle = title => {
-    return achievementAll.value.flatMap(category => category.data).find(ach => ach.name === title)
-  }
+    .join(', ')
+}
 
-  // 图鉴装备信息
-  const illustrationsInfo = (i, ii) => {
-    const info = illustrationsItems.value[i].data[ii]
-    ElMessageBox.confirm('', info.name, {
-      center: true,
-      message: `<div class="monsterinfo">
+const toggleTitle = achievement => {
+  if (player.value.currentTitle === achievement.name) {
+    // 取消佩戴称号
+    applyTitleBonus(achievement.titleBonus, false)
+    player.value.currentTitle = null
+    gameNotifys({
+      title: '称号系统',
+      message: `你取消佩戴了称号"${achievement.name}"`
+    })
+  } else {
+    // 佩戴新称号
+    if (player.value.currentTitle) {
+      // 如果已经佩戴了称号，先移除旧称号的加成
+      const oldAchievement = findAchievementByTitle(player.value.currentTitle)
+      if (oldAchievement) applyTitleBonus(oldAchievement.titleBonus, false)
+    }
+    applyTitleBonus(achievement.titleBonus, true)
+    player.value.currentTitle = achievement.name
+    gameNotifys({
+      title: '称号系统',
+      message: `你佩戴了称号"${achievement.name}"`
+    })
+  }
+}
+
+const applyTitleBonus = (bonus, isApplying) => {
+  const multiplier = isApplying ? 1 : -1
+  let dodge = 0,
+    attack = 0,
+    health = 0,
+    critical = 0,
+    defense = 0
+  Object.entries(bonus).forEach(([key, value]) => {
+    switch (key) {
+      case 'dodge':
+        dodge += value * multiplier
+        break
+      case 'attack':
+        attack += value * multiplier
+        break
+      case 'health':
+        health += value * multiplier
+        break
+      case 'critical':
+        critical += value * multiplier
+        break
+      case 'defense':
+        defense += value * multiplier
+        break
+      default:
+    }
+  })
+  playerAttribute(dodge, attack, health, critical, defense)
+}
+const findAchievementByTitle = title => {
+  return achievementAll.value.flatMap(category => category.data).find(ach => ach.name === title)
+}
+
+// 图鉴装备信息
+const illustrationsInfo = (i, ii) => {
+  const info = illustrationsItems.value[i].data[ii]
+  ElMessageBox.confirm('', info.name, {
+    center: true,
+    message: `<div class="monsterinfo">
       <div class="monsterinfo-box">
         <p>类型: ${genre[info.type]}</p>
         <p>境界: ${levelNames(info.level)}</p>
@@ -2461,280 +2453,280 @@
         <p>获得率: ${info.prize}%</p>
       </div>
     </div>`,
-      cancelButtonText: '关闭',
-      showCancelButton: false,
-      confirmButtonText: '知道了',
-      dangerouslyUseHTMLString: true
-    }).catch(() => {})
-  }
+    cancelButtonText: '关闭',
+    showCancelButton: false,
+    confirmButtonText: '知道了',
+    dangerouslyUseHTMLString: true
+  }).catch(() => { })
+}
 </script>
 
 <style scoped>
-  .index-box {
-    margin-top: 15px;
+.index-box {
+  margin-top: 15px;
+}
+
+.attribute {
+  width: calc(50% - 8px);
+  margin: 4px;
+  overflow: auto hidden;
+}
+
+.attribute-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-name {
+  margin-right: 5px;
+}
+
+.equip-box {
+  padding: 0 3px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.equip-item {
+  margin-bottom: 8px;
+  height: 40px;
+  line-height: 38px;
+}
+
+.equip {
+  margin-left: 10px;
+}
+
+.inventory-box {
+  white-space: pre-wrap;
+  min-height: 40px;
+  line-height: 38px;
+  height: auto;
+}
+
+.inventory-content {
+  margin-bottom: 15px;
+  height: 120px;
+  overflow: auto;
+}
+
+.inventory-item {
+  margin: 4px;
+}
+
+.dialog-footer {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dialog-footer .el-button {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.dialog-upload {
+  margin: 0;
+}
+
+.dialog-footer-button {
+  margin: 10px 0 0 0 !important;
+  width: 100%;
+}
+
+.dialog-footer-button:nth-child(2 + n) {
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* 炼器弹窗 */
+.strengthen-box {
+  padding: 0 5px;
+}
+
+.click-box {
+  padding: 0 5px;
+  margin-top: 10px;
+}
+
+.click-box button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* 装备信息 */
+.monsterinfo {
+  display: flex;
+  justify-content: center;
+}
+
+.monsterinfo-box {
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr;
+  gap: 10px;
+}
+
+.collapse p,
+.monsterinfo-box p {
+  display: contents;
+}
+
+.description {
+  text-align: left;
+}
+
+.icon {
+  text-align: center;
+}
+
+.value {
+  text-align: left;
+}
+
+/* 基础属性对比 */
+.collapse {
+  margin: 20px 0;
+}
+
+/* 属性对比 */
+.el-icon-caret-top,
+.el-icon-caret-bottom {
+  width: 1em;
+  height: 1em;
+  display: block;
+  margin-left: 5px;
+}
+
+.el-icon-caret-top {
+  background-image: url(@/assets/CaretTop.svg);
+}
+
+.el-icon-caret-bottom {
+  background-image: url(@/assets/caretBottom.svg);
+}
+
+.equipAll-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.equipAll-item {
+  width: 20%;
+  margin-top: 10px;
+}
+
+.achievement-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  color: var(--el-text-color-primary);
+}
+
+.achievement-item {
+  width: 33.33%;
+  margin-top: 10px;
+}
+
+.backtop {
+  background-color: #4d4d4d;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  position: fixed;
+  z-index: 1;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.dark .backtop {
+  background-color: #fff;
+  color: #4d4d4d;
+}
+
+/* 新手弹窗 */
+.newBie {
+  display: flex;
+  flex-direction: column;
+  height: 128px;
+  margin-bottom: 10px;
+}
+
+.newbieinfo-box p {
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .title {
+    font-size: 20px;
   }
 
-  .attribute {
-    width: calc(50% - 8px);
-    margin: 4px;
-    overflow: auto hidden;
-  }
-
-  .attribute-box {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .user-name {
-    margin-right: 5px;
+  .game-container {
+    min-height: 574px;
+    min-width: 356px;
   }
 
   .equip-box {
-    padding: 0 3px;
-    margin-top: 4px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .equip-item {
-    margin-bottom: 8px;
-    height: 40px;
-    line-height: 38px;
-  }
-
-  .equip {
-    margin-left: 10px;
-  }
-
-  .inventory-box {
-    white-space: pre-wrap;
-    min-height: 40px;
-    line-height: 38px;
-    height: auto;
-  }
-
-  .inventory-content {
-    margin-bottom: 15px;
-    height: 120px;
-    overflow: auto;
-  }
-
-  .inventory-item {
-    margin: 4px;
-  }
-
-  .dialog-footer {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .dialog-footer .el-button {
-    margin: 0;
-    margin-bottom: 10px;
-  }
-
-  .dialog-upload {
-    margin: 0;
-  }
-
-  .dialog-footer-button {
-    margin: 10px 0 0 0 !important;
-    width: 100%;
-  }
-
-  .dialog-footer-button:nth-child(2 + n) {
-    margin-top: 10px;
-    width: 100%;
-  }
-
-  /* 炼器弹窗 */
-  .strengthen-box {
     padding: 0 5px;
   }
 
-  .click-box {
-    padding: 0 5px;
-    margin-top: 10px;
-  }
-
-  .click-box button {
-    margin-top: 10px;
-    width: 100%;
-  }
-
-  /* 装备信息 */
-  .monsterinfo {
-    display: flex;
-    justify-content: center;
-  }
-
-  .monsterinfo-box {
-    display: grid;
-    grid-template-columns: 1fr 20px 1fr;
-    gap: 10px;
-  }
-
-  .collapse p,
-  .monsterinfo-box p {
-    display: contents;
-  }
-
-  .description {
-    text-align: left;
-  }
-
-  .icon {
-    text-align: center;
-  }
-
-  .value {
-    text-align: left;
-  }
-
-  /* 基础属性对比 */
-  .collapse {
-    margin: 20px 0;
-  }
-
-  /* 属性对比 */
-  .el-icon-caret-top,
-  .el-icon-caret-bottom {
-    width: 1em;
-    height: 1em;
-    display: block;
-    margin-left: 5px;
-  }
-
-  .el-icon-caret-top {
-    background-image: url(@/assets/CaretTop.svg);
-  }
-
-  .el-icon-caret-bottom {
-    background-image: url(@/assets/caretBottom.svg);
-  }
-
-  .equipAll-content {
-    display: flex;
-    flex-wrap: wrap;
+  .inventory-button {
+    margin-left: 0 !important;
   }
 
   .equipAll-item {
-    width: 20%;
-    margin-top: 10px;
-  }
-
-  .achievement-content {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: center;
-    color: var(--el-text-color-primary);
+    width: 33%;
   }
 
   .achievement-item {
-    width: 33.33%;
-    margin-top: 10px;
+    width: 50%;
   }
 
   .backtop {
-    background-color: #4d4d4d;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: #fff;
-    position: fixed;
-    z-index: 1;
-    bottom: 20px;
-    right: 20px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-
-  .dark .backtop {
-    background-color: #fff;
-    color: #4d4d4d;
-  }
-
-  /* 新手弹窗 */
-  .newBie {
     display: flex;
-    flex-direction: column;
-    height: 128px;
-    margin-bottom: 10px;
   }
-
-  .newbieinfo-box p {
-    margin-bottom: 10px;
-  }
-
-  @media only screen and (max-width: 768px) {
-    .title {
-      font-size: 20px;
-    }
-
-    .game-container {
-      min-height: 574px;
-      min-width: 356px;
-    }
-
-    .equip-box {
-      padding: 0 5px;
-    }
-
-    .inventory-button {
-      margin-left: 0 !important;
-    }
-
-    .equipAll-item {
-      width: 33%;
-    }
-
-    .achievement-item {
-      width: 50%;
-    }
-
-    .backtop {
-      display: flex;
-    }
-  }
+}
 </style>
 
 <style>
+.equipAll {
+  width: 60% !important;
+}
+
+@media only screen and (max-width: 768px) {
   .equipAll {
+    width: 100% !important;
+  }
+
+  /* 新手弹窗 */
+  .newBieBox {
     width: 60% !important;
   }
 
-  @media only screen and (max-width: 768px) {
-    .equipAll {
-      width: 100% !important;
-    }
-
-    /* 新手弹窗 */
-    .newBieBox {
-      width: 60% !important;
-    }
-
-    .el-popper {
-      display: none;
-    }
+  .el-popper {
+    display: none;
   }
+}
 
-  .el-collapse-item__content,
-  .el-collapse-item div[role='tab'] {
-    display: flex;
-    justify-content: center;
-  }
+.el-collapse-item__content,
+.el-collapse-item div[role='tab'] {
+  display: flex;
+  justify-content: center;
+}
 
-  .el-message-box--center {
-    text-align: center;
-  }
+.el-message-box--center {
+  text-align: center;
+}
 
-  /* 上传按钮 */
-  .el-upload {
-    width: 100%;
-  }
+/* 上传按钮 */
+.el-upload {
+  width: 100%;
+}
 </style>

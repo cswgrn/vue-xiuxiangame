@@ -111,7 +111,7 @@ const handleLogin = async () => {
 
       if (data.exists) {
         // 用户存在，保存认证信息到 authStore
-        authStore.login(data.user.id, data.user.username)
+        authStore.login(data.user)
         
         // 保存玩家名到游戏 store
         store.player.name = data.user.player_name
@@ -165,7 +165,7 @@ const handleCreateUser = async () => {
 
       const { data } = response
 
-      authStore.login(data.user.id, data.user.username)
+      authStore.login(data.user)
       
       // 保存玩家名到游戏 store
       store.player.name = data.user.player_name

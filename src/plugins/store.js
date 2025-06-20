@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import crypto from '@/plugins/crypto'
+import { useAuthStore } from '@/plugins/authStore'
 
 export const useMainStore = defineStore('main', {
   state: () => ({
@@ -111,6 +112,27 @@ export const useMainStore = defineStore('main', {
     mapScroll: 0,
     fishingMap: []
   }),
+  actions: {
+    updatePlayerName(name) {
+      this.player.name = name
+    },
+    initializePlayer(playerName) {
+      const name = playerName || this.player.name || '玩家'
+      
+      // 重置玩家数据到初始状态
+      this.$reset()
+      
+      // 设置名字
+      this.player.name = name
+    },
+    syncPlayerNameFromAuth() {
+      // 在 action 内部获取 authStore
+      const authStore = useAuthStore()
+      if (authStore.playerName) {
+        this.player.name = authStore.playerName
+      }
+    }
+  },
   persist: {
     key: 'vuex',
     paths: ['boss', 'player'],
